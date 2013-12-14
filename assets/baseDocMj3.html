@@ -1,0 +1,89 @@
+<html>
+<head>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'],['\\(','\\)']]
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="Mathjax/MathJax.js?config=TeX-MML-AM_HTMLorMML">
+</script>
+
+</head>
+<body>
+
+<script>
+  //
+  //  Use a closure to hide the local variables from the
+  //  global namespace
+  //
+  (function () {
+    var QUEUE = MathJax.Hub.queue;  // shorthand for the queue
+	
+	var texMath = null;
+	var amMath = null;  
+	var mmMath = null;  	
+   // var  texMath = MathJax.Hub.getAllJax("MathOutput")[0];
+    var texOutput = null;
+	var amOutput = null;
+	var mmOutput = null;
+    //
+    //  Get the element jax when MathJax has produced it.
+    //
+    QUEUE.Push(function () {
+      texMath = MathJax.Hub.getAllJax("TexOutput")[0];
+	  amMath = MathJax.Hub.getAllJax("AMOutput")[0];
+	  mmMath = MathJax.Hub.getAllJax("MMOutput")[0];
+	  
+	       texOutput = document.getElementById("TexOutput");
+	 amOutput = document.getElementById("AMOutput");
+	 mmOutput = document.getElementById("MMOutput");
+    });
+
+    //
+    //  The onchange event handler that typesets the
+    //  math entered by the user
+    //
+    window.UpdateMathTex = function (TeX) {
+      QUEUE.Push(["Text",texMath,"\\displaystyle{"+TeX+"}"]);
+	   amOutput.style.display="none";
+	   mmOutput.style.display="none";
+	   texOutput.style.display="block";
+    }
+	
+	   window.UpdateMathAscii = function (ascii) {
+       QUEUE.Push(["Text",amMath,ascii]);
+	   amOutput.style.display="block";
+	   mmOutput.style.display="none";
+	   texOutput.style.display="none";
+    }
+	
+   window.UpdateMathML = function (ml) {
+       QUEUE.Push(["Text",mmMath,ml]);
+	   amOutput.style.display="none";
+	   mmOutput.style.display="block";
+	   texOutput.style.display="none";
+    }
+  })();
+</script>
+
+
+<div id="TexOutput">
+<!-- style="visibility:hidden" -->
+${}$
+</div>
+<div id="AMOutput">
+``
+</div>
+<div id="MMOutput">
+<math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math>
+</div>
+<!--
+<input type="button" onClick="UpdateMathTex('\\left( \\sum_{k=2}^n a_k b_k \\right)^2')" value="TEX">
+<input type="button" onClick="UpdateMathAscii('f(x)=sum_(n=0)^oo(f^((n))(a))/(n!)(x-a)^n')" value="ASCII">
+<input type="button" onClick="UpdateMathML('<math><mrow><mo>(</mo><mi>&#x3B8;</mi><mo>+</mo><mi>&#x3C6;</mi><mo>)</mo></mrow></math>')" value="MATHML">
+-->
+</body>
+</html>

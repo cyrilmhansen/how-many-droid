@@ -1,0 +1,96 @@
+<html>
+<head>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    showProcessingMessages: false,
+    tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+ });
+</script>
+<script type='text/javascript' src='Mathjax/MathJax.js?config=TeX-MML-AM_HTMLorMML'></script>
+</head>
+<body>
+
+<script>
+// Mathjax/MathJax.js?config=TeX-MML-AM_HTMLorMML-full
+  // TeX-AMS-MML_HTMLorMML
+  //  Use a closure to hide the local variables from the
+  //  global namespace
+  //
+  (function () {
+    var QUEUE = MathJax.Hub.queue;  // shorthand for the queue
+
+    //
+    //  The onchange event handler that typesets the math entered
+    //  by the user.  Hide the box, then typeset, then show it again
+    //  so we don't see a flash as the math is cleared and replaced.
+    //
+    window.UpdateMathTex = function (TeX) {
+     // QUEUE.Push(HIDEBOX,["Text",math,"\\displaystyle{"+TeX+"}"],SHOWBOX);
+     var math = MathJax.Hub.getAllJax("tex_math")[0];
+      MathJax.Hub.Queue(["Text",math, TeX]);
+    }
+
+        window.UpdateMathAM = function (am) {
+     // QUEUE.Push(HIDEBOX,["Text",math,"\\displaystyle{"+TeX+"}"],SHOWBOX);
+     var math = MathJax.Hub.getAllJax("am_math")[0];
+      MathJax.Hub.Queue(["Text",math, am]);
+    }
+
+     window.UpdateMathMM = function (mm) {
+     // QUEUE.Push(HIDEBOX,["Text",math,"\\displaystyle{"+TeX+"}"],SHOWBOX);
+     var math = MathJax.Hub.getAllJax("mm_math")[0];
+      MathJax.Hub.Queue(["Text",math, mm]);
+    }
+  })();
+</script>
+
+<div id="am_math">`f(x)=sum_(n=0)^oo(f^((n))(a))/(n!)(x-a)^n`</div>
+
+<div id="tex_math">\[ \left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right) \]</div>
+<div id="mm_math">
+<math  xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+        <mi>cos</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mi>&#x3B8;</mi>
+            <mo>+</mo>
+            <mi>&#x3C6;</mi>
+            <mo>)</mo>
+        </mrow>
+        <mo>=</mo>
+        <mi>cos</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mi>&#x3B8;</mi>
+            <mo>)</mo>
+        </mrow>
+        <mi>cos</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mi>&#x3C6;</mi>
+            <mo>)</mo>
+        </mrow>
+        <mo>&#x2212;</mo>
+        <mi>sin</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mi>&#x3B8;</mi>
+            <mo>)</mo>
+        </mrow>
+        <mi>sin</mi>
+        <mo>&#x2061;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mi>&#x3C6;</mi>
+            <mo>)</mo>
+        </mrow>
+    </mrow>
+</math>
+</div>
+</body>
+</html>
