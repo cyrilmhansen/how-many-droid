@@ -1,0 +1,28 @@
+import  javax.measure.unit.SI;
+import  javax.measure.unit.NonSI;
+import  javax.measure.unit.UnitFormat;
+
+import  org.jscience.economics.money.Currency;
+
+
+
+///////////////////////////////////////////////////////////////////////
+// Calculates the cost of a car trip in Europe for an American tourist.
+///////////////////////////////////////////////////////////////////////
+
+// Use currency symbols instead of ISO-4217 codes.
+UnitFormat.getInstance().label(Currency.USD, "$"); // Use "$" symbol instead of currency code ("USD")
+UnitFormat.getInstance().label(Currency.EUR, "€"); // Use "€" symbol instead of currency code ("EUR")
+
+// Sets exchange rates.
+Currency.setReferenceCurrency(Currency.USD);
+Currency.EUR.setExchangeRate(1.33); // 1.0 € = 1.33 $
+
+// Calculates trip cost.
+Amount carMileage        = Amount.valueOf(20, NonSI.MILE.divide(NonSI.GALLON_LIQUID_US)); // 20 mi/gal.
+Amount gazPrice          = Amount.valueOf(1.51, Currency.EUR.divide(NonSI.LITER)); // 1.51 €/L
+Amount tripDistance = Amount.valueOf(400, SI.KILO(SI.METRE)); // 400 km
+Amount  tripCost     = tripDistance.divide(carMileage).times(gazPrice).to(Currency.USD);
+
+// Displays cost.
+String result= "Trip cost = " + tripCost + " (" + tripCost.to(Currency.EUR) + ")";

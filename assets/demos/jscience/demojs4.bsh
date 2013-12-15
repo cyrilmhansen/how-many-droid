@@ -1,0 +1,23 @@
+import  javax.measure.unit.SI;
+import org.jscience.mathematics.vector.*;
+
+Amount R1 = Amount.valueOf(100, 1, SI.OHM); // 1% precision. ElectricResistance
+Amount R2 = Amount.valueOf(300, 3, SI.OHM); // 1% precision. ElectricResistance
+Amount U0 = Amount.valueOf(28, 0.01, SI.VOLT); // ±0.01 V fluctuation. ElectricPotential
+
+// Equations:
+// U0 = U1 + U2       |1  1  0 |   |U1|   |U0|
+// U1 = R1 * I    =>  |-1 0  R1| * |U2| = |0 |
+// U2 = R2 * I        |0 -1  R2|   |I |   |0 |
+//
+//  A      *  X   =  B
+//
+DenseMatrix A = DenseMatrix.valueOf(new Amount[][] {
+    { Amount.ONE,            Amount.ONE,            Amount.valueOf(0, SI.OHM) },
+    { Amount.ONE.opposite(), Amount.ZERO,           R1 },
+    { Amount.ZERO,           Amount.ONE.opposite(), R2 } });
+DenseVector B = DenseVector.valueOf(new Amount[]
+    { U0, Amount.valueOf(0, SI.VOLT), Amount.valueOf(0, SI.VOLT) });
+Vector X = A.solve(B);
+
+String result = X.toString() + "\n" + (X.get(2).to(SI.MILLI(SI.AMPERE)));

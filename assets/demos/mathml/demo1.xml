@@ -1,0 +1,91 @@
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mfrac>
+        <mn>1</mn>
+        <mrow>
+            <mrow class="MJX-TeXAtom-OPEN">
+                <mo maxsize="1.623em" minsize="1.623em">(</mo>
+            </mrow>
+            <msqrt>
+                <mi>&#x03D5;<!-- ϕ --></mi>
+                <msqrt>
+                    <mn>5</mn>
+                </msqrt>
+            </msqrt>
+            <mo>&#x2212;<!-- − --></mo>
+            <mi>&#x03D5;<!-- ϕ --></mi>
+            <mrow class="MJX-TeXAtom-CLOSE">
+                <mo maxsize="1.623em" minsize="1.623em">)</mo>
+            </mrow>
+            <msup>
+                <mi>e</mi>
+                <mrow class="MJX-TeXAtom-ORD">
+                    <mfrac>
+                        <mn>2</mn>
+                        <mn>5</mn>
+                    </mfrac>
+                    <mi>&#x03C0;<!-- π --></mi>
+                </mrow>
+            </msup>
+        </mrow>
+    </mfrac>
+    <mo>=</mo>
+    <mn>1</mn>
+    <mo>+</mo>
+    <mfrac>
+        <msup>
+            <mi>e</mi>
+            <mrow class="MJX-TeXAtom-ORD">
+                <mo>&#x2212;<!-- − --></mo>
+                <mn>2</mn>
+                <mi>&#x03C0;<!-- π --></mi>
+            </mrow>
+        </msup>
+        <mrow>
+            <mn>1</mn>
+            <mo>+</mo>
+            <mfrac>
+                <msup>
+                    <mi>e</mi>
+                    <mrow class="MJX-TeXAtom-ORD">
+                        <mo>&#x2212;<!-- − --></mo>
+                        <mn>4</mn>
+                        <mi>&#x03C0;<!-- π --></mi>
+                    </mrow>
+                </msup>
+                <mrow>
+                    <mn>1</mn>
+                    <mo>+</mo>
+                    <mfrac>
+                        <msup>
+                            <mi>e</mi>
+                            <mrow class="MJX-TeXAtom-ORD">
+                                <mo>&#x2212;<!-- − --></mo>
+                                <mn>6</mn>
+                                <mi>&#x03C0;<!-- π --></mi>
+                            </mrow>
+                        </msup>
+                        <mrow>
+                            <mn>1</mn>
+                            <mo>+</mo>
+                            <mfrac>
+                                <msup>
+                                    <mi>e</mi>
+                                    <mrow class="MJX-TeXAtom-ORD">
+                                        <mo>&#x2212;<!-- − --></mo>
+                                        <mn>8</mn>
+                                        <mi>&#x03C0;<!-- π --></mi>
+                                    </mrow>
+                                </msup>
+                                <mrow>
+                                    <mn>1</mn>
+                                    <mo>+</mo>
+                                    <mo>&#x2026;<!-- … --></mo>
+                                </mrow>
+                            </mfrac>
+                        </mrow>
+                    </mfrac>
+                </mrow>
+            </mfrac>
+        </mrow>
+    </mfrac>
+</math>

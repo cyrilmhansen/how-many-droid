@@ -1,0 +1,11 @@
+import org.jscience.mathematics.number.Real;
+
+Real.setExactPrecision(100);
+
+Real value1 = Real.ONE;
+
+Real largeValue = Real.valueOf("123456789012345678901234567890");
+Real largeValuePlusOne = largeValue.plus(value1);
+
+Real squareRootOfLV = largeValue.sqrt();
+Real squareRootOfLVPO = largeValuePlusOne.sqrt();

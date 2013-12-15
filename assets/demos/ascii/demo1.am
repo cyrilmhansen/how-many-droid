@@ -1,0 +1,1 @@
+d/dxf(x)=lim_(h->0)(f(x+h)-f(x))/h
