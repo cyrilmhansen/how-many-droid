@@ -54,7 +54,7 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
     }
 
     private void demoParseEval() {
-        String input= "2*3.14159*9^2+6/(3+4)";
+        String input= " 2*3.14159*9^2+6/(3+4)";
         String astDemoRes = "";
         String astDemoTex = "";
         try {
