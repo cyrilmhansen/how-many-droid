@@ -35,8 +35,6 @@ Number = [:digit:] [:digit:]* (\. [:digit:] [:digit:]* )?
 
 %%
 
-{WhiteSpace}+   { /* ignore */ }
-
 <YYINITIAL> {
 	{Number}    { return newToken(Terminals.NUMBER, yytext()); }
 
