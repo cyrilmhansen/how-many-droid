@@ -12,6 +12,10 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    beaver; jflex
+}
+
 dependencies {
     // Pour dépendances embarquées dans repository,
     // si introuvable dans le repo maven central
@@ -24,17 +28,20 @@ dependencies {
     //compile 'net.sf.beaver:beaver-ant:0.9.11'
 
     compile 'com.google.guava:guava:15.0'
-    compile ('org.jscience:jscience:4.3.1') {
+    compile('org.jscience:jscience:4.3.1') {
         transitive = false
     }
     compile 'de.congrace:exp4j:0.3.11'
     compile 'org.beanshell:bsh:2.0b5'
 
+    beaver group: 'net.sf.beaver', name: 'beaver-ant', version: '0.9.11'
+    jflex group: 'de.jflex', name: 'jflex', version: '1.4.3'
+
     // Google Play Services
     // compile 'com.google.android.gms:play-services:4.0.30'
 
     // Support Libraries
-     //   compile 'com.android.support:support-v4:19.0.0'
+    //   compile 'com.android.support:support-v4:19.0.0'
     //  compile 'com.android.support:appcompat-v7:19.0.0'
     //  compile 'com.android.support:gridlayout-v7:19.0.0'
     //  compile 'com.android.support:support-v7-mediarouter:19.0.0'
@@ -85,4 +92,33 @@ android {
             }
         }
     }
+
+    // Taches ant pour la reconstruction du parser
+
+    task jflex << {
+        ant.taskdef(name: 'flextask', classname: 'JFlex.anttask.JFlexTask', classpath: configurations.jflex.asPath)
+        ant.flextask(file: 'src/fr/softwaresemantics/howmanydroid/model/ast/parser/generated/expr.flex',
+                // destdir: 'src/fr/softwaresemantics/howmanydroid/model/',
+                nobak: 'yes',
+                verbose: 'yes',
+                generateDot: 'yes',
+                time: 'yes')
+    }
+
+    task beaver << {
+
+        ant.taskdef(name: 'beavertask', classname: 'beaver.comp.run.AntTask', classpath: configurations.beaver.asPath)
+        ant.beavertask(file: 'src/fr/softwaresemantics/howmanydroid/model/ast/parser/generated/expr.grammar',
+                destdir: 'src/fr/softwaresemantics/howmanydroid/model/ast/parser/generated/',
+                compress: 'yes',
+                exportTables: 'no',
+                sortTerminals: 'no',
+                terminalNames: 'no',
+                exportTerminals: 'no',
+                useSwitch: 'no',
+                anonymousActions: 'yes',
+                reportActions: 'no')
+    }
+
+
 }
