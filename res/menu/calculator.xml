@@ -25,6 +25,11 @@
         android:orderInCategory="25"
         android:title="@string/demo5" />
 
+    <item
+        android:id="@+id/demo6"
+        android:orderInCategory="26"
+        android:title="@string/demo6" />
+
 
     <item
         android:id="@+id/action_settings"

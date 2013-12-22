@@ -24,6 +24,7 @@ import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.congrace.exp4j.UnknownFunctionException;
 import de.congrace.exp4j.UnparsableExpressionException;
+import fr.softwaresemantics.howmanydroid.model.ast.parser.ASTParser;
 import fr.softwaresemantics.howmanydroid.model.formula.FormulaSyntax;
 import fr.softwaresemantics.howmanydroid.util.AssetsUtil;
 import fr.softwaresemantics.howmanydroid.util.MsgDialog;
@@ -49,7 +50,24 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         initButtonListener(w);
 
         modeDemo = true;
-        demoJscience();
+        demoParseEval();
+    }
+
+    private void demoParseEval() {
+        String input= "2*3.14159*9^2+6/(3+4)";
+        String astDemoRes = "";
+        String astDemoTex = "";
+        try {
+            astDemoRes = ASTParser.demoParseAndEval(input).toString();
+            astDemoTex = ASTParser.parseAndGenTex(input);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        displayTestInDialog("Parse Eval demo 1", input  +"\n" + astDemoRes  +"\n");
+        formula = astDemoTex;
+        WebView w = (WebView) findViewById(R.id.mathjaxview);
+        modeDemo = true;
+        updateFormulaAndTypeset(w, FormulaSyntax.TEX, formula);
     }
 
     private void demoBeanshell() {
@@ -139,6 +157,9 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
                 return true;
             case R.id.demo5:
                 demoMathjaxMM();
+                return true;
+            case R.id.demo6:
+                demoParseEval();
                 return true;
             case R.id.help:
                 //  showHelp();

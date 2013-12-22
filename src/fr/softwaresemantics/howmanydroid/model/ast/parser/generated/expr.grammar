@@ -1,0 +1,40 @@
+%package "ast.parser";
+%import "ast.*";
+%class "ExpressionParser";
+
+%terminals NUMBER, MULT, DIV, PLUS, MINUS, LPAREN, RPAREN, EXPON, ALPHA09NAME, COMMA;
+
+%left  RPAREN;
+%right UNARY_MINUS;
+%left EXPON;
+%left  MULT, DIV;
+%left  PLUS, MINUS;
+
+%typeof NUMBER = "String";
+%typeof expr, pexpr = "Expr";
+%typeof ALPHA09NAME = "String";
+%typeof param = "FuncExpr";
+
+%goal expr;
+
+
+expr
+	= expr.a MULT  expr.b           {: return new MultExpr (a, b); :}
+	| expr.a DIV   expr.b           {: return new DivExpr  (a, b); :}
+	| expr.a PLUS  expr.b           {: return new PlusExpr (a, b); :}
+	| expr.a MINUS expr.b           {: return new MinusExpr(a, b); :}
+	| expr.a EXPON expr.b			{: return new ExponExpr(a,b);  :}
+	| MINUS expr.e @ UNARY_MINUS    {: return new NegExpr  (e);    :}
+	| NUMBER.n                      {: return new NumExpr  (n);    :}
+	| LPAREN pexpr.e RPAREN         {: return e;                   :}
+	| ALPHA09NAME.a					{: return new VarExpr  (a);	   :}
+	| ALPHA09NAME.a LPAREN param.p RPAREN   {: p.name=a; return p; :}
+	;
+param
+	=	param.p COMMA expr.e 		{: p.parameters.add(e); return p; :}
+	|	expr.e							{: FuncExpr f= new FuncExpr(); f.parameters.add(e); return f; :}
+	;
+pexpr
+	= expr
+	| error                         {: return new ErrExpr();       :}
+    ;
