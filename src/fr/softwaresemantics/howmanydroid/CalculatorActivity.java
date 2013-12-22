@@ -9,15 +9,11 @@ import android.webkit.WebView;
 import android.widget.Button;
 
 import org.jscience.mathematics.number.Real;
-import org.jscience.physics.amount.Amount;
 
 import java.io.StringReader;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javax.measure.quantity.ElectricCurrent;
-import javax.measure.quantity.Mass;
-import javax.measure.unit.NonSI;
 
 import bsh.Interpreter;
 import de.congrace.exp4j.Calculable;
@@ -55,15 +51,24 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
 
     private void demoParseEval() {
         String input= " 2*3.14159*9^2+6/(3+4)";
+        String inputWithParam = "a * x * x + b * x + c";
+        HashMap<String, Object> param = new HashMap<String, Object>();
+        param.put("a", 8.0d);
+        param.put("b", 5.0d);
+        param.put("c", 3.0d);
+        param.put("x", 4.0d);
+        String resultWithParam = "";
         String astDemoRes = "";
         String astDemoTex = "";
         try {
             astDemoRes = ASTParser.demoParseAndEval(input).toString();
             astDemoTex = ASTParser.parseAndGenTex(input);
+            resultWithParam = ASTParser.demoParseAndEvalWithParam(inputWithParam, param).toString();
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        displayTestInDialog("Parse Eval demo 1", input  +"\n" + astDemoRes  +"\n");
+        displayTestInDialog("Parse Eval demo 1", input + "\n" + astDemoRes + "\n" + inputWithParam + "\n" + resultWithParam + "\n");
         formula = astDemoTex;
         WebView w = (WebView) findViewById(R.id.mathjaxview);
         modeDemo = true;

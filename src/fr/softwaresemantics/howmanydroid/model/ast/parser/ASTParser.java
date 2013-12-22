@@ -10,23 +10,51 @@ package fr.softwaresemantics.howmanydroid.model.ast.parser;
  *
  * @author chris
  */
-import fr.softwaresemantics.howmanydroid.model.ast.*;
-
-import java.lang.Math;
-
-import beaver.Parser;
-import fr.softwaresemantics.howmanydroid.model.ast.parser.generated.ExpressionParser;
-import fr.softwaresemantics.howmanydroid.model.ast.parser.generated.ExpressionScanner;
 
 import java.io.IOException;
 import java.io.StringReader;
-        
+import java.util.HashMap;
+import java.util.Map;
+
+import beaver.Parser;
+import fr.softwaresemantics.howmanydroid.model.ast.DivExpr;
+import fr.softwaresemantics.howmanydroid.model.ast.ErrExpr;
+import fr.softwaresemantics.howmanydroid.model.ast.ExponExpr;
+import fr.softwaresemantics.howmanydroid.model.ast.Expr;
+import fr.softwaresemantics.howmanydroid.model.ast.FuncExpr;
+import fr.softwaresemantics.howmanydroid.model.ast.MinusExpr;
+import fr.softwaresemantics.howmanydroid.model.ast.MultExpr;
+import fr.softwaresemantics.howmanydroid.model.ast.NegExpr;
+import fr.softwaresemantics.howmanydroid.model.ast.NumExpr;
+import fr.softwaresemantics.howmanydroid.model.ast.PlusExpr;
+import fr.softwaresemantics.howmanydroid.model.ast.VarExpr;
+import fr.softwaresemantics.howmanydroid.model.ast.Visitor;
+import fr.softwaresemantics.howmanydroid.model.ast.parser.generated.ExpressionParser;
+import fr.softwaresemantics.howmanydroid.model.ast.parser.generated.ExpressionScanner;
+
 public class ASTParser {
 
     static class EvalVisitor extends Visitor
 {
-	public Object visit(ErrExpr expr)
-	{
+    private Map<String, Object> parameters;
+
+    public EvalVisitor() {
+        parameters = new HashMap<String, Object>();
+    }
+
+    public EvalVisitor(HashMap<String, Object> params) {
+        parameters = params;
+    }
+
+    public void setParameter(String key, Object val) {
+        parameters.put(key, val);
+    }
+
+    public Object getParameter(String key, Object val) {
+        return parameters.get(key);
+    }
+
+    public Object visit(ErrExpr expr) {
 		// leaf
 		return new Double(0);
 	}
@@ -67,9 +95,13 @@ public class ASTParser {
 	}
 	public Object visit(VarExpr expr)
 	{
-		return new Double(0);//val from hashmap here
-	}
-	public Object visit(FuncExpr expr)
+        if (parameters.containsKey(expr.name))
+            return parameters.get(expr.name);
+        else
+            return new Double(0);//Should throw exception or return invalid expression object
+    }
+
+    public Object visit(FuncExpr expr)
 	{
 		for (Expr e : expr.parameters)
 			e.accept(this);
@@ -104,10 +136,10 @@ public class ASTParser {
 	
 	public Object visit(DivExpr expr)
 	{
-		return new String("\frac{"+(String)expr.l.accept(this)+"}{"+(String)expr.r.accept(this)+"}");
-	}
-	
-	public Object visit(PlusExpr expr)
+        return new String("\\frac{" + (String) expr.l.accept(this) + "}{" + (String) expr.r.accept(this) + "}");
+    }
+
+    public Object visit(PlusExpr expr)
 	{
 		return new String((String)expr.l.accept(this)+"+"+(String)expr.r.accept(this));
 	}
@@ -157,6 +189,18 @@ public class ASTParser {
         LaTEXVisitor latex = new LaTEXVisitor();
         outputBuf.append("rec= " + (Double)expr.accept(eval)+"\n");
         outputBuf.append("rec= " + (String) expr.accept(latex)+"\n");
+        return outputBuf;
+    }
+
+    public static StringBuffer demoParseAndEvalWithParam(String str, HashMap<String, Object> param) throws IOException, Parser.Exception {
+        StringBuffer outputBuf = new StringBuffer();
+        ExpressionParser parser = new ExpressionParser();
+        ExpressionScanner input = new ExpressionScanner(new StringReader(str));
+        Expr expr = (Expr) parser.parse(input);
+        EvalVisitor eval = new EvalVisitor(param);
+        LaTEXVisitor latex = new LaTEXVisitor();
+        outputBuf.append("rec= " + (Double) expr.accept(eval) + "\n");
+        outputBuf.append("rec= " + (String) expr.accept(latex) + "\n");
         return outputBuf;
     }
 
