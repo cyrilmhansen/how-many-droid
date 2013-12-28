@@ -24,7 +24,6 @@ import fr.softwaresemantics.howmanydroid.model.ast.parser.ASTParser;
 import fr.softwaresemantics.howmanydroid.model.formula.FormulaSyntax;
 import fr.softwaresemantics.howmanydroid.util.AssetsUtil;
 import fr.softwaresemantics.howmanydroid.util.MsgDialog;
-
 public class CalculatorActivity extends Activity implements View.OnClickListener {
 
     String formula;
@@ -37,6 +36,23 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*
+
+        DBTest/Sample
+        DBHelper dbHelper = new DBHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        Cursor cursor = db.query("locale", new String[] {"name","description"}, null, null, null, null, null);
+        cursor.moveToFirst();
+
+        // Iterate the results
+        while (!cursor.isAfterLast()){
+            Log.w ("SQLite",cursor.getString(0) + ":" + cursor.getString(1));
+            cursor.moveToNext();
+        }
+        */
+
         setContentView(R.layout.activity_calculator);
 
         WebView w = (WebView) findViewById(R.id.mathjaxview);
