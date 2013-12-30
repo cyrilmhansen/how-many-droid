@@ -8,7 +8,7 @@ package fr.softwaresemantics.howmanydroid.model.ast.parser;
 
 /**
  *
- * @author chris
+ * @author christophe goessens
  */
 
 import java.io.IOException;
@@ -33,6 +33,57 @@ import fr.softwaresemantics.howmanydroid.model.ast.parser.generated.ExpressionPa
 import fr.softwaresemantics.howmanydroid.model.ast.parser.generated.ExpressionScanner;
 
 public class ASTParser {
+
+    public class ParserException extends Exception {
+        public ParserException() {
+        }
+
+        public ParserException(String msg) {
+            super(msg);
+        }
+
+        public ParserException(String msg, Throwable cause) {
+            super(msg, cause);
+        }
+
+        public ParserException(Throwable cause) {
+            super(cause);
+        }
+    }
+
+    public class ParserFunctionUndefinedException extends ParserException {
+        public ParserFunctionUndefinedException() {
+        }
+
+        public ParserFunctionUndefinedException(String msg) {
+            super(msg);
+        }
+
+        public ParserFunctionUndefinedException(String msg, Throwable cause) {
+            super(msg, cause);
+        }
+
+        public ParserFunctionUndefinedException(Throwable cause) {
+            super(cause);
+        }
+    }
+
+    public class ParserFunctionParameterException extends ParserException {
+        public ParserFunctionParameterException() {
+        }
+
+        public ParserFunctionParameterException(String msg) {
+            super(msg);
+        }
+
+        public ParserFunctionParameterException(String msg, Throwable cause) {
+            super(msg, cause);
+        }
+
+        public ParserFunctionParameterException(Throwable cause) {
+            super(cause);
+        }
+    }
 
     static class EvalVisitor extends Visitor
 {
@@ -103,12 +154,38 @@ public class ASTParser {
 
     public Object visit(FuncExpr expr)
 	{
-		for (Expr e : expr.parameters)
-			e.accept(this);
-		//for (int i=0;i<expr.parameters.size();i++)
-		//	expr.parameters[i].eval(this);
-		return new Double(0);//val from hashmap here
-	}
+        /*Quick and dirty simple math functions*/
+        if (expr.name.toLowerCase().equals("tan")) {
+            if (expr.parameters.size() != 1)
+                //throw
+                return new Double(0);
+            else
+                return Math.tan((Double) (expr.parameters.get(0)).accept(this));
+        }
+        if (expr.name.toLowerCase().equals("cos")) {
+            if (expr.parameters.size() != 1)
+                //throw
+                return new Double(0);
+            else
+                return Math.cos((Double) (expr.parameters.get(0)).accept(this));
+        }
+        if (expr.name.toLowerCase().equals("sin")) {
+            if (expr.parameters.size() != 1)
+                //throw
+                return new Double(0);
+            else
+                return Math.sin((Double) (expr.parameters.get(0)).accept(this));
+        } else {
+            //compute params
+            //todo store params val
+            for (Expr e : expr.parameters)
+                e.accept(this);
+
+            //todo execute function
+            return new Double(0);
+        }
+
+    }
 }
     static class LaTEXVisitor extends Visitor
 {

@@ -37,32 +37,38 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE calculus (" +
                 "calculusID INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT," +
-                "idMsg INTEGER  NOT NULL," +
-                "name VARCHAR NULL," +
-                "description VARCHAR NULL," +
+                //"idMsg INTEGER  NOT NULL," +
+                "idName INTEGER  NOT NULL," +
+                "idDesc INTEGER  NOT NULL," +
+                //"name VARCHAR NULL," +
+                //"description VARCHAR NULL," +
                 //"PRIMARY KEY(calculusID)," +
-                "FOREIGN KEY(idMsg)" +
-                "REFERENCES i18n(idMsg));"); //changed from i18nID
+                //"FOREIGN KEY(idMsg)" +
+                //"REFERENCES i18n(idMsg));"); //changed from i18nID
+                "FOREIGN KEY(idDesc)" +
+                "REFERENCES i18n(msgID)" +
+                "FOREIGN KEY(idName)" +
+                "REFERENCES i18n(msgID));"); //changed from i18nID
 
         db.execSQL("CREATE TABLE category (" +
                 "categoryID INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT," +
-                "idMsg INTEGER  NOT NULL," +
+                "msgID INTEGER  NOT NULL," +
                 "name VARCHAR NULL," +
                 //"PRIMARY KEY(categoryID)," +
-                "FOREIGN KEY(idMsg)" +
-                "REFERENCES i18n(idMsg));");
+                "FOREIGN KEY(msgID)" +
+                "REFERENCES i18n(msgID));");
 
         db.execSQL("CREATE TABLE parameter (" +
                 "parameterID INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT," +
-                "idMsg INTEGER  NOT NULL," +
+                "msgID INTEGER  NOT NULL," +
                 "expressionID INTEGER UNSIGNED NOT NULL," +
                 "name VARCHAR NULL," +
                 "value_type VARCHAR NULL," +
                 //"PRIMARY KEY(parametersID),"+
                 "FOREIGN KEY(expressionID)" +
                 "REFERENCES expression(expressionID)" +
-                "FOREIGN KEY(idMsg)" +
-                "REFERENCES i18n(idMsg));");
+                "FOREIGN KEY(msgID)" +
+                "REFERENCES i18n(msgID));");
 
         db.execSQL("CREATE TABLE calculus_has_category ( " +
                 "calculusID INTEGER  NOT NULL ," +
