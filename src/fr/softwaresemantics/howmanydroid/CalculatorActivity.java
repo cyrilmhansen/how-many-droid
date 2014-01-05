@@ -1,6 +1,7 @@
 package fr.softwaresemantics.howmanydroid;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,12 +23,16 @@ import de.congrace.exp4j.UnknownFunctionException;
 import de.congrace.exp4j.UnparsableExpressionException;
 import fr.softwaresemantics.howmanydroid.model.ast.parser.ASTParser;
 import fr.softwaresemantics.howmanydroid.model.formula.FormulaSyntax;
+import fr.softwaresemantics.howmanydroid.ui.mockup.MockupInputParamActivity;
 import fr.softwaresemantics.howmanydroid.util.AssetsUtil;
+import fr.softwaresemantics.howmanydroid.util.MJView;
 import fr.softwaresemantics.howmanydroid.util.MsgDialog;
 public class CalculatorActivity extends Activity implements View.OnClickListener {
 
     String formula;
     boolean modeDemo;
+
+    MJView mjView;
 
     public CalculatorActivity() {
         this.formula = new String();
@@ -56,9 +61,10 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         setContentView(R.layout.activity_calculator);
 
         WebView w = (WebView) findViewById(R.id.mathjaxview);
-        w.getSettings().setJavaScriptEnabled(true);
+       // w.getSettings().setJavaScriptEnabled(true);
 
-        initMathjax(w);
+        mjView = new MJView(this, w);
+       // initMathjax(w);
         initButtonListener(w);
 
         modeDemo = true;
@@ -86,9 +92,8 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         }
         displayTestInDialog("Parse Eval demo 1", input + "\n" + astDemoRes + "\n" + inputWithParam + "\n" + resultWithParam + "\n");
         formula = astDemoTex;
-        WebView w = (WebView) findViewById(R.id.mathjaxview);
         modeDemo = true;
-        updateFormulaAndTypeset(w, FormulaSyntax.TEX, formula);
+        mjView.displayMath(FormulaSyntax.TEX, formula);
     }
 
     private void demoBeanshell() {
@@ -182,6 +187,9 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
             case R.id.demo6:
                 demoParseEval();
                 return true;
+            case R.id.demo7:
+                runMockup();
+                return true;
             case R.id.help:
                 //  showHelp();
                 return true;
@@ -191,16 +199,15 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
     }
 
     public void demoMathjaxAM() {
-        WebView w = (WebView) findViewById(R.id.mathjaxview);
         modeDemo = true;
 
         // formula = "d/dxf(x)=lim_(h->0)(f(x+h)-f(x))/h";
         loadFormulaFromDemo("demos/ascii", "demo1.am");
 
-        updateFormulaAndTypeset(w, FormulaSyntax.ASCII_MATHML, formula);
+        mjView.displayMath(FormulaSyntax.ASCII_MATHML, formula);
     }
 
-    private void loadFormulaFromDemo(String path, String file) {
+    public void loadFormulaFromDemo(String path, String file) {
         try {
             formula = AssetsUtil.loadUTF8AssetAsString(this, path, file);
             formula = formula.replaceAll("\r|\n", "");
@@ -210,24 +217,26 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
     }
 
     public void demoMathjaxTEX() {
-        WebView w = (WebView) findViewById(R.id.mathjaxview);
         modeDemo = true;
 
         loadFormulaFromDemo("demos/tex", "demo1.tex");
-        updateFormulaAndTypeset(w, FormulaSyntax.TEX, formula);
+        mjView.displayMath(FormulaSyntax.TEX, formula);
     }
 
     public void demoMathjaxMM() {
-        WebView w = (WebView) findViewById(R.id.mathjaxview);
         modeDemo = true;
         loadFormulaFromDemo("demos/mathml", "demo1.xml");
 
-        updateFormulaAndTypeset(w, FormulaSyntax.DISPLAY_MATHML, formula);
+        mjView.displayMath(FormulaSyntax.DISPLAY_MATHML, formula);
+    }
+
+    public void runMockup() {
+        Intent i = new Intent(this, MockupInputParamActivity.class);
+        startActivity(i);
     }
 
 
     public void onClick(View v) {
-        WebView w = (WebView) findViewById(R.id.mathjaxview);
         if (modeDemo) {
             modeDemo = false;
             formula = "";
@@ -281,17 +290,17 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         }
 
         if (v == findViewById(R.id.buttonEQ)) {
-            calculateFormula(w);
+            calculateFormula();
         } else {
-            updateFormulaAndTypeset(w, FormulaSyntax.ASCII_MATHML, formula);
+            mjView.displayMath(FormulaSyntax.ASCII_MATHML, formula);
         }
     }
 
-    private void calculateFormula(WebView w) {
+    private void calculateFormula() {
         Calculable calc;
         try {
             calc = new ExpressionBuilder(formula).build();
-            displayMath(w, FormulaSyntax.ASCII_MATHML, "=" + Double.toString(calc.calculate()));
+            mjView.displayMath(FormulaSyntax.ASCII_MATHML, "=" + Double.toString(calc.calculate()));
 
         } catch (UnknownFunctionException ex) {
             Logger.getLogger(CalculatorActivity.class.getName()).log(Level.SEVERE, null, ex);
@@ -300,51 +309,6 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         }
     }
 
-    private void displayMath(WebView w, FormulaSyntax syntax, String formula) {
-        updateFormulaAndTypeset(w, syntax, formula);
-    }
-
-    private void updateFormulaAndTypeset(WebView w, FormulaSyntax syntax, String formula) {
-        // clearAllMath(w);
-        updateFormula(w, syntax, formula);
-        // typeset(w, syntax);
-    }
-
-    private void updateFormula(WebView w, FormulaSyntax syntax, String formula) {
-        switch (syntax) {
-            case ASCII_MATHML:
-                w.loadUrl("javascript:UpdateMathAscii('" + formula + "');");
-                break;
-            case TEX:
-                // Attention les formules Tex doivent quoter les _\
-                String quoted = formula.replace("\\", "\\\\");
-                w.loadUrl("javascript:UpdateMathTex('" + quoted + "');");
-                break;
-            case DISPLAY_MATHML:
-                String quoted2 = formula.replace("\\", "\\\\");
-                w.loadUrl("javascript:UpdateMathML('" + quoted2 + "');");
-                break;
-        }
-    }
-
-    private void clearFormula(WebView w, FormulaSyntax syntax) {
-        switch (syntax) {
-            case ASCII_MATHML:
-                w.loadUrl("javascript:UpdateMathAscii('');");
-            case DISPLAY_MATHML:
-                w.loadUrl("javascript:UpdateMathML('');");
-                break;
-            case TEX:
-                w.loadUrl("javascript:UpdateMathTex('');");
-                break;
-        }
-    }
-
-    private void clearAllMath(WebView w) {
-        for (FormulaSyntax syntax : FormulaSyntax.values()) {
-            clearFormula(w, syntax);
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -353,9 +317,6 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         return true;
     }
 
-    private void initMathjax(WebView w) {
-        w.loadUrl("file:///android_asset/baseDocMj3.html");
-    }
 
     private void initButtonListener(WebView w) {
         Button b = (Button) findViewById(R.id.button0);
@@ -403,4 +364,6 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         b = (Button) findViewById(R.id.buttonDEL);
         b.setOnClickListener(this);
     }
+
+
 }

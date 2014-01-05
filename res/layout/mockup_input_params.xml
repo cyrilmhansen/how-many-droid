@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="100dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:id="@+id/home_btn"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_weight="1" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Favorites"
+            android:id="@+id/favorites_btn"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_weight="10" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Results history"
+            android:id="@+id/history_btn"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_weight="1" />
+</LinearLayout>
+
+
+    <WebView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/webViewFormulaPres"
+        android:layout_gravity="center_vertical" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Choisir la grandeur à calculer :"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal" />
+
+
+        <RadioGroup
+            android:id="@+id/radioVar"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+        <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A1"
+        android:id="@+id/rBtnVar1"
+        android:layout_weight="1"
+        android:checked="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="R"
+            android:id="@+id/rBtnVar2"
+            android:layout_weight="1"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S"
+            android:id="@+id/rBtnVar3"
+            android:layout_weight="1"
+            android:checked="false" />
+        </RadioGroup>
+
+
+    <WebView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/webViewComputationDetail"
+        android:layout_gravity="center_vertical" />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:lines="2"
+            android:text="Saisir R\n(longueur)"
+            android:id="@+id/tVParamLabel1"
+            android:layout_gravity="center|fill"
+            android:minWidth="100dp"
+            android:gravity="center" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:inputType="numberDecimal"
+            android:text="4"
+            android:id="@+id/tVInput1"
+            android:layout_gravity="center|fill"
+            android:editable="true"
+            android:digits="1234567890"
+            android:focusable="true"
+            android:minWidth="80dp"
+            android:clickable="true"
+            android:gravity="center" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Résultats Prec."
+            android:id="@+id/btnResPrec1"
+            android:layout_gravity="fill_horizontal|center_vertical"
+            android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:lines="2"
+            android:text="Saisir S\n(longueur)"
+            android:id="@+id/tVParamLabel2"
+            android:layout_gravity="center|fill"
+            android:minWidth="100dp"
+            android:gravity="center" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:inputType="numberDecimal"
+            android:text="5"
+            android:id="@+id/tVInput2"
+            android:layout_gravity="center|fill"
+            android:editable="true"
+            android:focusable="true"
+            android:minWidth="80dp"
+            android:clickable="true"
+            android:digits="1234567890"
+            android:gravity="center" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Résultats Prec."
+            android:id="@+id/btnResPrec2"
+            android:layout_gravity="fill_horizontal|center_vertical"
+            android:gravity="center" />
+
+        </GridLayout>
+
+</LinearLayout>
