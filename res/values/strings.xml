@@ -11,4 +11,6 @@
     <string name="demo4">Demo/Test Mathjax TEX</string>
     <string name="demo5">Demo/Test Mathjax MathML</string>
     <string name="demo6">Demo/Test Parser / Eval</string>
+    <string name="demo7">Demo Mockup 1</string>
+
 </resources>

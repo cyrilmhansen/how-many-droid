@@ -32,6 +32,11 @@
 
 
     <item
+        android:id="@+id/demo7"
+        android:orderInCategory="27"
+        android:title="@string/demo7" />
+
+    <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:showAsAction="never"

@@ -1,11 +1,11 @@
-package ast.parser;
+package fr.softwaresemantics.howmanydroid.model.ast.parser.generated;
 import beaver.Symbol;
 import beaver.Scanner;
 
-import ast.parser.ExpressionParser.Terminals;
+import fr.softwaresemantics.howmanydroid.model.ast.parser.generated.ExpressionParser.Terminals;
 
 %%
-
+%public
 %class ExpressionScanner
 %extends Scanner
 %function nextToken

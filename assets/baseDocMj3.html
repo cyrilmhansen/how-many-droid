@@ -33,11 +33,11 @@
     //  Get the element jax when MathJax has produced it.
     //
     QUEUE.Push(function () {
-      texMath = MathJax.Hub.getAllJax("TexOutput")[0];
-	  amMath = MathJax.Hub.getAllJax("AMOutput")[0];
-	  mmMath = MathJax.Hub.getAllJax("MMOutput")[0];
+      texMath = MathJax.Hub.getAllJax("TexOutput");
+	  amMath = MathJax.Hub.getAllJax("AMOutput");
+	  mmMath = MathJax.Hub.getAllJax("MMOutput");
 	  
-	       texOutput = document.getElementById("TexOutput");
+	 texOutput = document.getElementById("TexOutput");
 	 amOutput = document.getElementById("AMOutput");
 	 mmOutput = document.getElementById("MMOutput");
     });
@@ -47,43 +47,70 @@
     //  math entered by the user
     //
     window.UpdateMathTex = function (TeX) {
-      QUEUE.Push(["Text",texMath,"\\displaystyle{"+TeX+"}"]);
+      QUEUE.Push(["Text",texMath[0],"\\displaystyle{"+TeX+"}"]);
+	   amOutput.style.display="none";
+	   mmOutput.style.display="none";
+	   texOutput.style.display="block";
+    }
+
+        window.UpdateMathTexML = function (TeX, line) {
+      QUEUE.Push(["Text",texMath[line],"\\displaystyle{"+TeX+"}"]);
 	   amOutput.style.display="none";
 	   mmOutput.style.display="none";
 	   texOutput.style.display="block";
     }
 	
 	   window.UpdateMathAscii = function (ascii) {
-       QUEUE.Push(["Text",amMath,ascii]);
+       QUEUE.Push(["Text",amMath[0],ascii]);
+	   amOutput.style.display="block";
+	   mmOutput.style.display="none";
+	   texOutput.style.display="none";
+    }
+
+    window.UpdateMathAsciiML = function (ascii, line) {
+       QUEUE.Push(["Text",amMath[line],ascii]);
 	   amOutput.style.display="block";
 	   mmOutput.style.display="none";
 	   texOutput.style.display="none";
     }
 	
-   window.UpdateMathML = function (ml) {
-       QUEUE.Push(["Text",mmMath,ml]);
+   window.UpdateMath = function (ml) {
+       QUEUE.Push(["Text",mmMath[0],ml]);
 	   amOutput.style.display="none";
 	   mmOutput.style.display="block";
 	   texOutput.style.display="none";
     }
+
+       window.UpdateMathML = function (ml, line) {
+       QUEUE.Push(["Text",mmMath[line],ml]);
+	   amOutput.style.display="none";
+	   mmOutput.style.display="block";
+	   texOutput.style.display="none";
+    }
+
+     MathJax.Hub.Queue(function () {
+    // Callback Android to say that loading is complete
+    MJView.notifyMJInitComplete();
+  });
+
+
   })();
 </script>
 
 
 <div id="TexOutput">
 <!-- style="visibility:hidden" -->
-${}$
+${}$<BR/>${}$<BR/>${}$<BR/>${}$<BR/>${}$
 </div>
 <div id="AMOutput">
-``
+``<BR/>``<BR/>``<BR/>``<BR/>``
 </div>
 <div id="MMOutput">
+<math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math><BR/>
+<math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math><BR/>
+<math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math><BR/>
+<math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math><BR/>
 <math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math>
 </div>
-<!--
-<input type="button" onClick="UpdateMathTex('\\left( \\sum_{k=2}^n a_k b_k \\right)^2')" value="TEX">
-<input type="button" onClick="UpdateMathAscii('f(x)=sum_(n=0)^oo(f^((n))(a))/(n!)(x-a)^n')" value="ASCII">
-<input type="button" onClick="UpdateMathML('<math><mrow><mo>(</mo><mi>&#x3B8;</mi><mo>+</mo><mi>&#x3C6;</mi><mo>)</mo></mrow></math>')" value="MATHML">
--->
 </body>
 </html>

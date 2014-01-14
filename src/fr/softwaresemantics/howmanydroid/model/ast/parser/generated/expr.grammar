@@ -1,5 +1,17 @@
-%package "ast.parser";
-%import "ast.*";
+%package "fr.softwaresemantics.howmanydroid.model.ast.parser.generated";
+
+%import "fr.softwaresemantics.howmanydroid.model.ast.DivExpr";
+%import "fr.softwaresemantics.howmanydroid.model.ast.ErrExpr";
+%import "fr.softwaresemantics.howmanydroid.model.ast.ExponExpr";
+%import "fr.softwaresemantics.howmanydroid.model.ast.Expr";
+%import "fr.softwaresemantics.howmanydroid.model.ast.FuncExpr";
+%import "fr.softwaresemantics.howmanydroid.model.ast.MinusExpr";
+%import "fr.softwaresemantics.howmanydroid.model.ast.MultExpr";
+%import "fr.softwaresemantics.howmanydroid.model.ast.NegExpr";
+%import "fr.softwaresemantics.howmanydroid.model.ast.NumExpr";
+%import "fr.softwaresemantics.howmanydroid.model.ast.PlusExpr";
+%import "fr.softwaresemantics.howmanydroid.model.ast.VarExpr";
+
 %class "ExpressionParser";
 
 %terminals NUMBER, MULT, DIV, PLUS, MINUS, LPAREN, RPAREN, EXPON, ALPHA09NAME, COMMA;
