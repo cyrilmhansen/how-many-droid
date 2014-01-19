@@ -1,18 +1,28 @@
 package fr.softwaresemantics.howmanydroid;
 
+import com.j256.ormlite.field.DatabaseField;
+
+import java.io.Serializable;
+
 /**
  * Created by Christophe Goessen on 30/12/13.
  */
 
 
-public class Parameter {
+public class Parameter implements Serializable {
+    @DatabaseField(generatedId = true)
+    private int parameterID;
+
     public String getName() {
         return name;
     }
 
+    public Parameter() {
+    }
+
     public Parameter(String name, String type) {
         this.name = name;
-        this.type = type;
+        this.value_type = type;
     }
 
     public void setName(String name) {
@@ -20,7 +30,7 @@ public class Parameter {
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.value_type = type;
     }
 
     public void setValue(Object value) {
@@ -29,14 +39,19 @@ public class Parameter {
 
     public String getType() {
 
-        return type;
+        return value_type;
     }
 
     public Object getValue() {
         return value;
     }
 
+    @DatabaseField
     private String name;
-    private String type;
+    @DatabaseField
+    private String value_type;
+    @DatabaseField(foreign = true, columnName = "expressionID", canBeNull = false, foreignAutoCreate = true, foreignAutoRefresh = true)
+    private Expression expr;
+
     private Object value;
 }

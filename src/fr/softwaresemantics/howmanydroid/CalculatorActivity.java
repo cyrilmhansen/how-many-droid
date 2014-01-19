@@ -27,6 +27,7 @@ import fr.softwaresemantics.howmanydroid.ui.mockup.MockupInputParamActivity;
 import fr.softwaresemantics.howmanydroid.util.AssetsUtil;
 import fr.softwaresemantics.howmanydroid.util.MJView;
 import fr.softwaresemantics.howmanydroid.util.MsgDialog;
+
 public class CalculatorActivity extends Activity implements View.OnClickListener {
 
     String formula;
@@ -61,10 +62,10 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         setContentView(R.layout.activity_calculator);
 
         WebView w = (WebView) findViewById(R.id.mathjaxview);
-       // w.getSettings().setJavaScriptEnabled(true);
+        // w.getSettings().setJavaScriptEnabled(true);
 
         mjView = new MJView(this, w);
-       // initMathjax(w);
+        // initMathjax(w);
         initButtonListener(w);
 
         modeDemo = true;
@@ -72,7 +73,7 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
     }
 
     private void demoParseEval() {
-        String input= " 2*3.14159*9^2+6/(3+4)";
+        String input = " 2*3.14159*9^2+6/(3+4)";
         String inputWithParam = "a * x * x + b * x + c";
         HashMap<String, Object> param = new HashMap<String, Object>();
         param.put("a", 8.0d);

@@ -34,6 +34,8 @@ dependencies {
     compile 'de.congrace:exp4j:0.3.11'
     compile 'org.beanshell:bsh:2.0b5'
 
+    compile "com.j256.ormlite:ormlite-android:4.48"
+
     beaver group: 'net.sf.beaver', name: 'beaver-ant', version: '0.9.11'
     jflex group: 'de.jflex', name: 'jflex', version: '1.4.3'
 

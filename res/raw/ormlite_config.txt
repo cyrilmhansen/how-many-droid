@@ -1,0 +1,92 @@
+#
+# generated on 2014/01/19 02:15:27
+#
+# --table-start--
+dataClass=fr.softwaresemantics.howmanydroid.I18n
+tableName=i18n
+# --table-fields-start--
+# --field-start--
+fieldName=i18nID
+canBeNull=false
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=msgID
+canBeNull=false
+indexName=i18n_msgID_idx
+# --field-end--
+# --field-start--
+fieldName=locale
+foreign=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=fr.softwaresemantics.howmanydroid.Expression
+tableName=expression
+# --table-fields-start--
+# --field-start--
+fieldName=expressionID
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=parameterList
+foreignCollection=true
+# --field-end--
+# --field-start--
+fieldName=expression
+# --field-end--
+# --field-start--
+fieldName=value_type
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=fr.softwaresemantics.howmanydroid.Locale
+tableName=locale
+# --table-fields-start--
+# --field-start--
+fieldName=localeId
+canBeNull=false
+id=true
+generatedId=true
+indexName=locale_localeId_idx
+# --field-end--
+# --field-start--
+fieldName=name
+canBeNull=false
+# --field-end--
+# --field-start--
+fieldName=description
+canBeNull=false
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=fr.softwaresemantics.howmanydroid.Parameter
+tableName=parameter
+# --table-fields-start--
+# --field-start--
+fieldName=parameterID
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=name
+# --field-end--
+# --field-start--
+fieldName=value_type
+# --field-end--
+# --field-start--
+fieldName=expr
+columnName=expressionID
+canBeNull=false
+foreign=true
+foreignAutoRefresh=true
+foreignAutoCreate=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
