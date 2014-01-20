@@ -1,27 +1,6 @@
 #
-# generated on 2014/01/19 02:15:27
+# generated on 2014/01/20 08:54:41
 #
-# --table-start--
-dataClass=fr.softwaresemantics.howmanydroid.I18n
-tableName=i18n
-# --table-fields-start--
-# --field-start--
-fieldName=i18nID
-canBeNull=false
-generatedId=true
-# --field-end--
-# --field-start--
-fieldName=msgID
-canBeNull=false
-indexName=i18n_msgID_idx
-# --field-end--
-# --field-start--
-fieldName=locale
-foreign=true
-# --field-end--
-# --table-fields-end--
-# --table-end--
-#################################
 # --table-start--
 dataClass=fr.softwaresemantics.howmanydroid.Expression
 tableName=expression
@@ -44,19 +23,38 @@ fieldName=value_type
 # --table-end--
 #################################
 # --table-start--
+dataClass=fr.softwaresemantics.howmanydroid.I18n
+tableName=i18n
+# --table-fields-start--
+# --field-start--
+fieldName=i18nID
+canBeNull=false
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=msgID
+canBeNull=false
+indexName=i18n_msgID_idx
+# --field-end--
+# --field-start--
+fieldName=locale
+foreign=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
 dataClass=fr.softwaresemantics.howmanydroid.Locale
 tableName=locale
 # --table-fields-start--
 # --field-start--
 fieldName=localeId
-canBeNull=false
-id=true
 generatedId=true
-indexName=locale_localeId_idx
 # --field-end--
 # --field-start--
 fieldName=name
 canBeNull=false
+indexName=locale_name_idx
 # --field-end--
 # --field-start--
 fieldName=description

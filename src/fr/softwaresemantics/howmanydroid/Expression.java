@@ -1,5 +1,6 @@
 package fr.softwaresemantics.howmanydroid;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 
@@ -16,7 +17,7 @@ public class Expression implements Serializable {
     @DatabaseField(generatedId = true)
     private int expressionID;
     @ForeignCollectionField(eager = false)
-    List<Parameter> parameterList;
+    ForeignCollection<Parameter> parameterList;
     @DatabaseField
     String expression;
     @DatabaseField
@@ -47,11 +48,11 @@ public class Expression implements Serializable {
     }
 
 
-    public List<Parameter> getParameterList() {
+    public ForeignCollection<Parameter> getParameterList() {
         return parameterList;
     }
 
-    public void setParameterList(List<Parameter> parameterList) {
+    public void setParameterList(ForeignCollection<Parameter> parameterList) {
         this.parameterList = parameterList;
     }
 }

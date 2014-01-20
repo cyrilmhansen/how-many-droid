@@ -3,6 +3,7 @@ package fr.softwaresemantics.howmanydroid;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import org.jscience.mathematics.number.Real;
 
 import java.io.StringReader;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,6 +60,17 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
             cursor.moveToNext();
         }
         */
+        Log.i("db", "dbHelper created");
+        DBHelper dbHelper = new DBHelper(this);
+
+        try {
+            dbHelper.getDao();
+            Locale loc = dbHelper.getDao().queryForEq("name","en_EN").get(0);
+            //Locale loc = dbHelper.getDao().queryForAll().get(0);
+            Log.i("db", loc.getDescription());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         setContentView(R.layout.activity_calculator);
 

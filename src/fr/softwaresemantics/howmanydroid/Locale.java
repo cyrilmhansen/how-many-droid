@@ -8,9 +8,9 @@ import java.io.Serializable;
  * Created by christophe goessen on 19/01/14.
  */
 public class Locale implements Serializable {
-    @DatabaseField(id = true, generatedId = true, canBeNull = false, index = true)
+    @DatabaseField(generatedId = true)
     private int localeId;
-    @DatabaseField(canBeNull = false)
+    @DatabaseField(canBeNull = false,index = true)
     String name;
     @DatabaseField(canBeNull = false)
     String description;

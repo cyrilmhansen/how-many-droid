@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
@@ -18,10 +19,13 @@ import java.sql.SQLException;
 public class DBHelper extends OrmLiteSqliteOpenHelper {
 
 
+    private static final String DATABASE_NAME = "howmanydroid.db";
+    private static final int DATABASE_VERSION = 1;
+
     private RuntimeExceptionDao<Locale, Integer> localeRuntimeDao = null;
 
     public DBHelper(Context context) {
-        super(context, "howmanydroid_db", null, 3);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
     }
 
     private Dao<Locale, Integer> localeDao = null;
@@ -146,6 +150,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
             lang.setName("en_EN");
             lang.setDescription("english (UK)");
             localeDao.create(lang);
+            Log.i("HMD DAO Debug","locale english added!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
