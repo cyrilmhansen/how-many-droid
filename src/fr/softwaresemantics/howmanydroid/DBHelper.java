@@ -139,7 +139,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
         */
         //equivalent ORMLIT OP
 
-        /*
+
         try {
             Dao<Locale,Integer> localeDao = DaoManager.createDao(connectionSource, Locale.class);
             Locale lang = new Locale();
@@ -148,14 +148,14 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
             localeDao.create(lang);
         } catch (SQLException e) {
             e.printStackTrace();
-        }*/
+        }
 
 
     }
 
     public Dao<Locale, Integer> getDao() throws SQLException {
         if (localeDao == null) {
-            //localeDao = getDao(Locale.class);
+            localeDao = getDao(Locale.class);
         }
         return localeDao;
     }
