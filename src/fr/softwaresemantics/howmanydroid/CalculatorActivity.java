@@ -14,6 +14,7 @@ import org.jscience.mathematics.number.Real;
 
 import java.io.StringReader;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,14 +61,26 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
             cursor.moveToNext();
         }
         */
-        Log.i("db", "dbHelper created");
+        Log.i("ORMLite", "dbHelper created");
         DBHelper dbHelper = new DBHelper(this);
 
         try {
-            dbHelper.getDao();
-            Locale loc = dbHelper.getDao().queryForEq("name","en_EN").get(0);
+
+
+            Locale loc = dbHelper.getLocaleDao().queryForId("en_EN");
+            Log.i("ORMLite", loc.getDescription());
+            for (Locale lang:dbHelper.getLocaleDao().queryForAll())
+                Log.i("ORMLite", "lang="+lang.getDescription());
             //Locale loc = dbHelper.getDao().queryForAll().get(0);
-            Log.i("db", loc.getDescription());
+
+
+            Collection<I18n> i18ns = dbHelper.getI18nDao().queryForAll();
+            Log.i("ORMLite",i18ns.size()+" I18n strings");
+            for (I18n i18n:i18ns)
+            {
+                for (Locale lang:dbHelper.getLocaleDao().queryForAll())
+                    Log.i("ORMLite", i18n.getMsgID()+" in "+lang.getDescription()+" is "+i18n.getValue(lang)+" !");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

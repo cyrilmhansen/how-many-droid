@@ -5,6 +5,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -17,7 +18,18 @@ public class Expression implements Serializable {
     @DatabaseField(generatedId = true)
     private int expressionID;
     @ForeignCollectionField(eager = false)
-    ForeignCollection<Parameter> parameterList;
+    Collection<Parameter> parameterList;
+
+    public Calculus getCalculus() {
+        return calculus;
+    }
+
+    public void setCalculus(Calculus calculus) {
+        this.calculus = calculus;
+    }
+
+    @DatabaseField(foreign = true)
+    Calculus calculus;
     @DatabaseField
     String expression;
     @DatabaseField
@@ -48,7 +60,7 @@ public class Expression implements Serializable {
     }
 
 
-    public ForeignCollection<Parameter> getParameterList() {
+    public Collection<Parameter> getParameterList() {
         return parameterList;
     }
 

@@ -1,6 +1,29 @@
 #
-# generated on 2014/01/20 08:54:41
+# generated on 2014/01/22 09:41:10
 #
+# --table-start--
+dataClass=fr.softwaresemantics.howmanydroid.Calculus
+tableName=calculus
+# --table-fields-start--
+# --field-start--
+fieldName=calculusID
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=expressionList
+foreignCollection=true
+# --field-end--
+# --field-start--
+fieldName=name
+foreign=true
+# --field-end--
+# --field-start--
+fieldName=description
+foreign=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
 # --table-start--
 dataClass=fr.softwaresemantics.howmanydroid.Expression
 tableName=expression
@@ -12,6 +35,10 @@ generatedId=true
 # --field-start--
 fieldName=parameterList
 foreignCollection=true
+# --field-end--
+# --field-start--
+fieldName=calculus
+foreign=true
 # --field-end--
 # --field-start--
 fieldName=expression
@@ -27,18 +54,13 @@ dataClass=fr.softwaresemantics.howmanydroid.I18n
 tableName=i18n
 # --table-fields-start--
 # --field-start--
-fieldName=i18nID
-canBeNull=false
-generatedId=true
-# --field-end--
-# --field-start--
 fieldName=msgID
-canBeNull=false
-indexName=i18n_msgID_idx
+id=true
 # --field-end--
 # --field-start--
-fieldName=locale
-foreign=true
+fieldName=translations
+foreignCollection=true
+foreignCollectionEager=true
 # --field-end--
 # --table-fields-end--
 # --table-end--
@@ -48,13 +70,8 @@ dataClass=fr.softwaresemantics.howmanydroid.Locale
 tableName=locale
 # --table-fields-start--
 # --field-start--
-fieldName=localeId
-generatedId=true
-# --field-end--
-# --field-start--
 fieldName=name
-canBeNull=false
-indexName=locale_name_idx
+id=true
 # --field-end--
 # --field-start--
 fieldName=description
@@ -72,6 +89,10 @@ fieldName=parameterID
 generatedId=true
 # --field-end--
 # --field-start--
+fieldName=expression
+foreign=true
+# --field-end--
+# --field-start--
 fieldName=name
 # --field-end--
 # --field-start--
@@ -84,6 +105,29 @@ canBeNull=false
 foreign=true
 foreignAutoRefresh=true
 foreignAutoCreate=true
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=fr.softwaresemantics.howmanydroid.Translation
+tableName=translation
+# --table-fields-start--
+# --field-start--
+fieldName=TranslationID
+canBeNull=false
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=locale
+foreign=true
+# --field-end--
+# --field-start--
+fieldName=i18n
+foreign=true
+# --field-end--
+# --field-start--
+fieldName=value
 # --field-end--
 # --table-fields-end--
 # --table-end--

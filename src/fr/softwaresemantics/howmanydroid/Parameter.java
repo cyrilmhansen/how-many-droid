@@ -13,6 +13,16 @@ public class Parameter implements Serializable {
     @DatabaseField(generatedId = true)
     private int parameterID;
 
+    public Expression getExpression() {
+        return expression;
+    }
+
+    public void setExpression(Expression expression) {
+        this.expression = expression;
+    }
+
+    @DatabaseField(foreign = true)
+    Expression expression;
     public String getName() {
         return name;
     }
