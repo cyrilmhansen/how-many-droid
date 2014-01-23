@@ -1,11 +1,10 @@
-package fr.softwaresemantics.howmanydroid;
+package fr.softwaresemantics.howmanydroid.db;
 
 /**
  * Created by christophe goessen on 19/01/14.
  */
 
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;

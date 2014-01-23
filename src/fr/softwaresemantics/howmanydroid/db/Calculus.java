@@ -1,13 +1,9 @@
-package fr.softwaresemantics.howmanydroid;
+package fr.softwaresemantics.howmanydroid.db;
 
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
-import com.j256.ormlite.dao.ForeignCollection;
-import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 

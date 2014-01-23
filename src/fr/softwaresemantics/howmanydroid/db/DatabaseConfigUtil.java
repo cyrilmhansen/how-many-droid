@@ -1,4 +1,4 @@
-package fr.softwaresemantics.howmanydroid;
+package fr.softwaresemantics.howmanydroid.db;
 
 /**
  * Created by christophe goessen on 19/01/14.

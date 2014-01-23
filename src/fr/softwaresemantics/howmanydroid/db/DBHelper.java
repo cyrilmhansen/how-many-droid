@@ -1,4 +1,4 @@
-package fr.softwaresemantics.howmanydroid;
+package fr.softwaresemantics.howmanydroid.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,6 +12,8 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
+
+import fr.softwaresemantics.howmanydroid.R;
 
 /**
  * Created by christophe Goessen on 28/12/13.

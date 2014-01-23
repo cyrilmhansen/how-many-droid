@@ -1,4 +1,4 @@
-package fr.softwaresemantics.howmanydroid;
+package fr.softwaresemantics.howmanydroid.db;
 
 import com.j256.ormlite.field.DatabaseField;
 

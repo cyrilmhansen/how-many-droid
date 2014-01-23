@@ -1,8 +1,8 @@
 #
-# generated on 2014/01/23 08:24:09
+# generated on 2014/01/23 08:29:52
 #
 # --table-start--
-dataClass=fr.softwaresemantics.howmanydroid.Assignment
+dataClass=fr.softwaresemantics.howmanydroid.db.Assignment
 tableName=assignment
 # --table-fields-start--
 # --field-start--
@@ -25,7 +25,7 @@ canBeNull=false
 # --table-end--
 #################################
 # --table-start--
-dataClass=fr.softwaresemantics.howmanydroid.Calculus
+dataClass=fr.softwaresemantics.howmanydroid.db.Calculus
 tableName=calculus
 # --table-fields-start--
 # --field-start--
@@ -48,7 +48,7 @@ foreign=true
 # --table-end--
 #################################
 # --table-start--
-dataClass=fr.softwaresemantics.howmanydroid.Expression
+dataClass=fr.softwaresemantics.howmanydroid.db.Expression
 tableName=expression
 # --table-fields-start--
 # --field-start--
@@ -77,7 +77,7 @@ fieldName=value_type
 # --table-end--
 #################################
 # --table-start--
-dataClass=fr.softwaresemantics.howmanydroid.Favorite
+dataClass=fr.softwaresemantics.howmanydroid.db.Favorite
 tableName=favorite
 # --table-fields-start--
 # --field-start--
@@ -92,7 +92,7 @@ foreign=true
 # --table-end--
 #################################
 # --table-start--
-dataClass=fr.softwaresemantics.howmanydroid.History
+dataClass=fr.softwaresemantics.howmanydroid.db.History
 tableName=history
 # --table-fields-start--
 # --field-start--
@@ -108,7 +108,7 @@ foreignCollectionEager=true
 # --table-end--
 #################################
 # --table-start--
-dataClass=fr.softwaresemantics.howmanydroid.I18n
+dataClass=fr.softwaresemantics.howmanydroid.db.I18n
 tableName=i18n
 # --table-fields-start--
 # --field-start--
@@ -124,7 +124,7 @@ foreignCollectionEager=true
 # --table-end--
 #################################
 # --table-start--
-dataClass=fr.softwaresemantics.howmanydroid.Locale
+dataClass=fr.softwaresemantics.howmanydroid.db.Locale
 tableName=locale
 # --table-fields-start--
 # --field-start--
@@ -139,7 +139,7 @@ canBeNull=false
 # --table-end--
 #################################
 # --table-start--
-dataClass=fr.softwaresemantics.howmanydroid.Parameter
+dataClass=fr.softwaresemantics.howmanydroid.db.Parameter
 tableName=parameter
 # --table-fields-start--
 # --field-start--
@@ -172,7 +172,7 @@ foreignAutoCreate=true
 # --table-end--
 #################################
 # --table-start--
-dataClass=fr.softwaresemantics.howmanydroid.Translation
+dataClass=fr.softwaresemantics.howmanydroid.db.Translation
 tableName=translation
 # --table-fields-start--
 # --field-start--
@@ -197,7 +197,7 @@ fieldName=value
 # --table-end--
 #################################
 # --table-start--
-dataClass=fr.softwaresemantics.howmanydroid.Unit
+dataClass=fr.softwaresemantics.howmanydroid.db.Unit
 tableName=unit
 # --table-fields-start--
 # --field-start--
