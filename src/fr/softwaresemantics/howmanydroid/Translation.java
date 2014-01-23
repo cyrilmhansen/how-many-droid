@@ -36,9 +36,9 @@ public class Translation implements Serializable {
         this.value = value;
     }
 
-    @DatabaseField(foreign = true)
+    @DatabaseField(foreign = true, uniqueCombo = true)
     Locale locale;
-    @DatabaseField(foreign = true)
+    @DatabaseField(foreign = true, uniqueCombo = true)
     I18n i18n;
     @DatabaseField(canBeNull = true)
     String value;

@@ -33,6 +33,10 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
     private Dao<Expression, Integer> expressionDao = null;
     private Dao<Calculus, Integer> calculusDao = null;
     private Dao<Translation, Integer> translationDao = null;
+    private Dao<Unit, Integer> unitDao = null;
+    private Dao<Favorite, Integer> favoriteDao = null;
+    private Dao<Assignment, Integer> assignmentDao = null;
+    private Dao<History, Integer> historyDao = null;
 
     @Override
     public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
@@ -49,6 +53,9 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, I18n.class);
             TableUtils.createTable(connectionSource, Calculus.class);
             TableUtils.createTable(connectionSource, Translation.class);
+            TableUtils.createTable(connectionSource, Unit.class);
+            TableUtils.createTable(connectionSource, Assignment.class);
+            TableUtils.createTable(connectionSource, History.class);
         } catch (SQLException e) {
             Log.e(DBHelper.class.getName(), "Can't create database", e);
             throw new RuntimeException(e);
@@ -60,7 +67,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
                 "expressionID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "expression VARCHAR, " +
                 "value_type VARCHAR); ");*/
-
+/*
         db.execSQL(" CREATE TABLE unit (" +
                 "unitID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
                 "value_type VARCHAR NOT NULL," +
@@ -71,7 +78,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
                 //syntax below not accepted for single col key
                 // "PRIMARY KEY(unitID)," + //removed value type from key
                 "FOREIGN KEY(expressionID)" +
-                "REFERENCES expression(expressionID));");
+                "REFERENCES expression(expressionID));");*/
 /*
         db.execSQL("CREATE TABLE calculus (" +
                 "calculusID INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT," +
@@ -128,6 +135,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
                 "FOREIGN KEY(calculusID)" +
                 "REFERENCES calculus(calculusID));");
 */
+        /*
         db.execSQL("CREATE TABLE history (" +
                 "historyID INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT," +
                 "parametersID INTEGER  NOT NULL," +
@@ -135,14 +143,15 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
                 // "PRIMARY KEY(historyID),"+
                 "FOREIGN KEY(parametersID)" +
                 "REFERENCES parameters(parametersID));");
-
+    */
+        /*
         db.execSQL("CREATE TABLE favorite (" +
                 "favoriteID INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT," +
                 "calculusID INTEGER UNSIGNED NOT NULL," +
                 //"PRIMARY KEY(idFavorite),"+
                 "FOREIGN KEY(calculusID)" +
                 "REFERENCES calculus(calculusID));");
-
+*/
         /*
         ContentValues cv = new ContentValues();
         cv.put("name", "en_EN");
@@ -223,6 +232,30 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
         }
         return translationDao;
     }
+    public Dao<Unit, Integer> getUnitDao() throws SQLException {
+        if (unitDao == null) {
+            unitDao = getDao(Unit.class);
+        }
+        return unitDao;
+    }
+    public Dao<Favorite, Integer> getFavoriteDao() throws SQLException {
+        if (favoriteDao == null) {
+            favoriteDao = getDao(Favorite.class);
+        }
+        return favoriteDao;
+    }
+    public Dao<Assignment, Integer> getAssignmentDao() throws SQLException {
+        if (assignmentDao == null) {
+            assignmentDao = getDao(Assignment.class);
+        }
+        return assignmentDao;
+    }
+    public Dao<History, Integer> getHistoryDao() throws SQLException {
+        if (historyDao == null) {
+            historyDao = getDao(History.class);
+        }
+        return historyDao;
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, ConnectionSource connectionSource, int oldVersion, int newVersion) {
@@ -238,6 +271,9 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, I18n.class, true);
             TableUtils.dropTable(connectionSource, Calculus.class, true);
             TableUtils.dropTable(connectionSource, Translation.class, true);
+            TableUtils.dropTable(connectionSource, Unit.class, true);
+            TableUtils.dropTable(connectionSource, History.class, true);
+            TableUtils.dropTable(connectionSource, Assignment.class, true);
             // after we drop the old databases, we create the new ones
             onCreate(db, connectionSource);
         } catch (SQLException e) {
@@ -250,10 +286,10 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
         //db.execSQL("DROP TABLE IF EXISTS expression");
         //db.execSQL("DROP TABLE IF EXISTS calculus");
         //db.execSQL("DROP TABLE IF EXISTS category");
-        db.execSQL("DROP TABLE IF EXISTS history");
-        db.execSQL("DROP TABLE IF EXISTS favorite");
+        //db.execSQL("DROP TABLE IF EXISTS history");
+        //db.execSQL("DROP TABLE IF EXISTS favorite");
         //db.execSQL("DROP TABLE IF EXISTS parameter");
-        db.execSQL("DROP TABLE IF EXISTS unit");
+        //db.execSQL("DROP TABLE IF EXISTS unit");
         //db.execSQL("DROP TABLE IF EXISTS calculus_has_expression");
         //db.execSQL("DROP TABLE IF EXISTS calculus_has_category");
         onCreate(db);

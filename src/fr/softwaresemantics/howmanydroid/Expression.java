@@ -20,6 +20,16 @@ public class Expression implements Serializable {
     @ForeignCollectionField(eager = false)
     Collection<Parameter> parameterList;
 
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
+    }
+
+    @DatabaseField(foreign = true)
+    Unit unit;
     public Calculus getCalculus() {
         return calculus;
     }

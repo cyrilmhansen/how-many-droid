@@ -16,7 +16,8 @@ public class Parameter implements Serializable {
     public Expression getExpression() {
         return expression;
     }
-
+    @DatabaseField(foreign = true)
+    Unit unit;
     public void setExpression(Expression expression) {
         this.expression = expression;
     }
@@ -33,6 +34,14 @@ public class Parameter implements Serializable {
     public Parameter(String name, String type) {
         this.name = name;
         this.value_type = type;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
     }
 
     public void setName(String name) {
