@@ -39,6 +39,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
     private Dao<Favorite, Integer> favoriteDao = null;
     private Dao<Assignment, Integer> assignmentDao = null;
     private Dao<History, Integer> historyDao = null;
+    private Dao<Category, Integer> categoryDao = null;
 
     @Override
     public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
@@ -58,6 +59,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, Unit.class);
             TableUtils.createTable(connectionSource, Assignment.class);
             TableUtils.createTable(connectionSource, History.class);
+            TableUtils.createTable(connectionSource, Category.class);
         } catch (SQLException e) {
             Log.e(DBHelper.class.getName(), "Can't create database", e);
             throw new RuntimeException(e);
@@ -258,6 +260,12 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
         }
         return historyDao;
     }
+    public Dao<Category, Integer> getCategoryDao() throws SQLException {
+        if (categoryDao == null) {
+            categoryDao = getDao(Category.class);
+        }
+        return categoryDao;
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, ConnectionSource connectionSource, int oldVersion, int newVersion) {
@@ -276,6 +284,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, Unit.class, true);
             TableUtils.dropTable(connectionSource, History.class, true);
             TableUtils.dropTable(connectionSource, Assignment.class, true);
+            TableUtils.dropTable(connectionSource, Category.class, true);
             // after we drop the old databases, we create the new ones
             onCreate(db, connectionSource);
         } catch (SQLException e) {

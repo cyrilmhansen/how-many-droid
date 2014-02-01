@@ -19,6 +19,17 @@ public class Calculus implements Serializable {
     @DatabaseField(foreign = true)
     I18n name;
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    @DatabaseField(foreign = true)
+    Category category;
+
     public I18n getDescription() {
         return description;
     }
