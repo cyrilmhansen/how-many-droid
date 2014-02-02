@@ -13,6 +13,7 @@ package fr.softwaresemantics.howmanydroid.model.ast.parser;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -243,6 +244,80 @@ public class ASTParser {
 		return res;//val from hashmap here
 	}
 }
+
+
+    static class InjectVarsAMVisitor extends Visitor
+    {
+
+        private Map<String, Object> parameters;
+
+        public InjectVarsAMVisitor() {
+            parameters = new HashMap<String, Object>();
+        }
+
+        public InjectVarsAMVisitor(HashMap<String, Object> params) {
+            parameters = params;
+        }
+
+        public Object visit(ErrExpr expr)
+        {
+            // leaf
+            return new String("Err");
+        }
+
+        public Object visit(NumExpr expr)
+        {
+            // leaf
+            return Double.toString(expr.value);
+        }
+
+        public Object visit(NegExpr expr)
+        {
+            return new String("-" + (String)expr.e.accept(this));
+        }
+
+        public Object visit(MultExpr expr)
+        {
+            return new String((String)expr.l.accept(this)+"*"+(String)expr.r.accept(this));
+        }
+
+        public Object visit(DivExpr expr)
+        {
+            return new String( (String) expr.l.accept(this) + "/ (" + (String) expr.r.accept(this) + ")");
+        }
+
+        public Object visit(PlusExpr expr)
+        {
+            return new String((String)expr.l.accept(this)+"+"+(String)expr.r.accept(this));
+        }
+
+        public Object visit(MinusExpr expr)
+        {
+            return new String((String)expr.l.accept(this)+"-"+(String)expr.r.accept(this));
+        }
+        public Object visit(ExponExpr expr)
+        {
+            return new String((String)expr.l.accept(this)+"^"+(String)expr.r.accept(this));
+        }
+        public Object visit(VarExpr expr)
+        {
+            if (parameters.containsKey(expr.name)) {
+                DecimalFormat df = new DecimalFormat("#.####");
+                return df.format(((Number) parameters.get(expr.name)).doubleValue());
+            }
+            else
+                return "0";//Should throw exception or return invalid expression object
+        }
+        public Object visit(FuncExpr expr)
+        {       String res = new String(expr.name+"(");
+            for (Expr e : expr.parameters)
+                res += e.accept(this)+",";
+            res= res.substring(0, res.length()-1);
+            //for (int i=0;i<expr.parameters.size();i++)
+            //	expr.parameters[i].eval(this);
+            return res;//val from hashmap here
+        }
+    }
     
     
     public static void main(String[] args) throws Parser.Exception, IOException {
@@ -269,7 +344,7 @@ public class ASTParser {
         return outputBuf;
     }
 
-    public static StringBuffer demoParseAndEvalWithParam(String str, HashMap<String, Object> param) throws IOException, Parser.Exception {
+       public static StringBuffer demoParseAndEvalWithParam(String str, HashMap<String, Object> param) throws IOException, Parser.Exception {
         StringBuffer outputBuf = new StringBuffer();
         ExpressionParser parser = new ExpressionParser();
         ExpressionScanner input = new ExpressionScanner(new StringReader(str));
@@ -279,6 +354,26 @@ public class ASTParser {
         outputBuf.append("rec= " + (Double) expr.accept(eval) + "\n");
         outputBuf.append("rec= " + (String) expr.accept(latex) + "\n");
         return outputBuf;
+    }
+
+    public static String parseAndReplaceWithParam(String str, HashMap<String, Object> param) throws IOException, Parser.Exception {
+        StringBuffer outputBuf = new StringBuffer();
+        ExpressionParser parser = new ExpressionParser();
+        ExpressionScanner input = new ExpressionScanner(new StringReader(str));
+        Expr expr = (Expr) parser.parse(input);
+        InjectVarsAMVisitor inject = new InjectVarsAMVisitor(param);
+
+        return (String) expr.accept(inject);
+    }
+
+    public static Double parseAndEvalWithParam(String str, HashMap<String, Object> param) throws IOException, Parser.Exception {
+        StringBuffer outputBuf = new StringBuffer();
+        ExpressionParser parser = new ExpressionParser();
+        ExpressionScanner input = new ExpressionScanner(new StringReader(str));
+        Expr expr = (Expr) parser.parse(input);
+        EvalVisitor eval = new EvalVisitor(param);
+
+        return (Double) expr.accept(eval);
     }
 
     public static String parseAndGenTex(String str) throws IOException, Parser.Exception {

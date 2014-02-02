@@ -23,18 +23,19 @@ public class MJView {
     private String[] formula;
 
 
-    public MJView(Activity context, WebView w) {
+    public MJView(Activity context, WebView w, int nbLines) {
         formula = new String[2];
         this.w = w;
         this.context = context;
-        initMathjax(w);
+        initMathjax(w, nbLines);
     }
 
-    private void initMathjax(WebView w) {
+    private void initMathjax(WebView w, int nbLines) {
         isInitializing = true;
         w.getSettings().setJavaScriptEnabled(true);
         w.addJavascriptInterface(this, "MJView");
-        w.loadUrl("file:///android_asset/baseDocMj3.html");
+        w.loadUrl("file:///android_asset/baseDocMj3.html?nbLines="+nbLines);
+
     }
 
     public void notifyMJInitComplete() {
@@ -73,23 +74,6 @@ public class MJView {
             somethingWaitingToDisplay = true;
         }
     }
-
-//    public void updateFormula(FormulaSyntax syntax, String formula) {
-//        switch (syntax) {
-//            case ASCII_MATHML:
-//                w.loadUrl("javascript:UpdateMathAsciiML('" + formula + "', 0);");
-//                break;
-//            case TEX:
-//                // Attention les formules Tex doivent quoter les _\
-//                String quoted = formula.replace("\\", "\\\\");
-//                w.loadUrl("javascript:UpdateMathTexML('" + quoted + "', 0);");
-//                break;
-//            case DISPLAY_MATHML:
-//                String quoted2 = formula.replace("\\", "\\\\");
-//                w.loadUrl("javascript:UpdateMathML('" + quoted2 + "', 0);");
-//                break;
-//        }
-//    }
 
     public void updateFormula(FormulaSyntax syntax, String formula, int line) {
         switch (syntax) {

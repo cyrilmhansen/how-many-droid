@@ -41,6 +41,7 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
 
     MJView mjView;
 
+
     public CalculatorActivity() {
         this.formula = new String();
     }
@@ -66,7 +67,7 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         */
         Log.i("ORMLite", "dbHelper created");
         DBHelper dbHelper = new DBHelper(this);
-
+        String localeMsg ="";
         try {
 
 
@@ -79,26 +80,33 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
 
             Collection<I18n> i18ns = dbHelper.getI18nDao().queryForAll();
             Log.i("ORMLite",i18ns.size()+" I18n strings");
+
             for (I18n i18n:i18ns)
             {
-                for (Locale lang:dbHelper.getLocaleDao().queryForAll())
-                    Log.i("ORMLite", i18n.getMsgID()+" in "+lang.getDescription()+" is "+i18n.getValue(lang)+" !");
+                for (Locale lang:dbHelper.getLocaleDao().queryForAll()) {
+                    localeMsg = i18n.getMsgID()+" in "+lang.getDescription()+" is "+i18n.getValue(lang)+" !";
+                    Log.i("ORMLite", localeMsg);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        displayTestInDialog("I18N via DB", localeMsg);
 
         setContentView(R.layout.activity_calculator);
 
         WebView w = (WebView) findViewById(R.id.mathjaxview);
         // w.getSettings().setJavaScriptEnabled(true);
 
-        mjView = new MJView(this, w);
+        mjView = new MJView(this, w, 1);
         // initMathjax(w);
         initButtonListener(w);
 
         modeDemo = true;
         demoParseEval();
+
+
     }
 
     private void demoParseEval() {

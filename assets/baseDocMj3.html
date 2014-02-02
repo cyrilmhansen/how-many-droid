@@ -1,7 +1,10 @@
 <html>
 <head>
+
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
+    messageStyle: "none",
+    // showProcessingMessages: false
     tex2jax: {
       inlineMath: [['$','$'],['\\(','\\)']]
     }
@@ -100,17 +103,54 @@
 
 <div id="TexOutput">
 <!-- style="visibility:hidden" -->
-${}$<BR/>${}$<BR/>${}$<BR/>${}$<BR/>${}$
-</div>
-<div id="AMOutput">
-``<BR/>``<BR/>``<BR/>``<BR/>``
-</div>
-<div id="MMOutput">
-<math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math><BR/>
-<math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math><BR/>
-<math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math><BR/>
-<math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math><BR/>
-<math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math>
-</div>
-</body>
-</html>
+    <!-- ${}$<BR/>${}$<BR/>${}$<BR/>${}$<BR/>${}$ -->
+    </div>
+    <div id="AMOutput">
+   <!-- ``<BR/>``<BR/>``<BR/>``<BR/>``-->
+    </div>
+    <div id="MMOutput">
+        <!-- <math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math><BR/>
+         <math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math><BR/>
+         <math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math><BR/>
+         <math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math><BR/>
+         <math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math>-->
+    </div>
+
+         <script>
+             // alert(window.location);
+             var divTex = document.getElementById('TexOutput');
+             var divAM = document.getElementById('AMOutput');
+             var divMM = document.getElementById('MMOutput');
+
+            // Tentative de libérer de l'espace verticalement
+
+            // divTex.parentNode.removeChild(divTex);
+            // divMM.parentNode.removeChild(divMM);
+
+          var nbLines = parseInt(getQueryVariable("nbLines"));
+
+
+           // divTex.innerHTML = divTex.innerHTML + ' ' + nbLines + '<BR/>;
+          for (var i=0;i<nbLines;i++)
+         {
+         divTex.innerHTML = divTex.innerHTML + '${}$'; //<BR/>
+         divAM.innerHTML = divAM.innerHTML + '``<BR/>'; //<BR/>
+         divMM.innerHTML = divMM.innerHTML + '<math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math>'; //<BR/>
+         }
+
+
+     function getQueryVariable(variable) {
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+         var pair = vars[i].split("=");
+         if (pair[0] == variable) {
+           return pair[1];
+         }
+       }
+       return nil;
+     }
+     </script>
+         </body>
+
+         </html>

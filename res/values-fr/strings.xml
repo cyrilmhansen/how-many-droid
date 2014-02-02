@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HowManyDroid</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="hello_world">Bonjour Monde!</string>
+    <string name="help">Aide</string>
+    <string name="demo1">Démo/Test Beanshell</string>
+    <string name="demo2">Démo/Test JScience</string>
+    <string name="demo3">Démo/Test Mathjax AsciiMath</string>
+    <string name="demo4">Démo/Test Mathjax TEX</string>
+    <string name="demo5">Démo/Test Mathjax MathML</string>
+    <string name="demo6">Démo/Test Parser / Eval</string>
+    <string name="demo7">Démo Mockup 1</string>
+
+</resources>
