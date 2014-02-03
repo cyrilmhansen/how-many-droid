@@ -1,5 +1,6 @@
 package fr.softwaresemantics.howmanydroid.db;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
@@ -8,13 +9,19 @@ import java.io.Serializable;
  * Created by christophe Goessen on 23/01/14.
  */
 public class Unit implements Serializable {
-public Unit(){}
-    @DatabaseField (generatedId = true)
+    public Unit() {
+    }
+
+    @JsonProperty
+    @DatabaseField(generatedId = true)
     int unitID;
+    @JsonProperty
     @DatabaseField()
     String value_type;
+    @JsonProperty
     @DatabaseField(index = true)
     String unit_name;
+    @JsonProperty
     @DatabaseField()
     String symbol;
 

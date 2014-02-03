@@ -1,5 +1,7 @@
 package fr.softwaresemantics.howmanydroid.db;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
@@ -13,9 +15,10 @@ import java.util.Collection;
 
 //@DatabaseTable(tableName = "expression")
 public class Expression implements Serializable {
-
+    @JsonProperty
     @DatabaseField(generatedId = true)
     private int expressionID;
+    @JsonProperty
     @ForeignCollectionField(eager = false)
     Collection<Parameter> parameterList;
 
@@ -27,8 +30,10 @@ public class Expression implements Serializable {
         this.unit = unit;
     }
 
+    @JsonProperty
     @DatabaseField(foreign = true)
     Unit unit;
+
     public Calculus getCalculus() {
         return calculus;
     }
@@ -37,10 +42,13 @@ public class Expression implements Serializable {
         this.calculus = calculus;
     }
 
+    @JsonIgnore
     @DatabaseField(foreign = true)
     Calculus calculus;
+    @JsonProperty
     @DatabaseField
     String expression;
+    @JsonProperty
     @DatabaseField
     String value_type;
 

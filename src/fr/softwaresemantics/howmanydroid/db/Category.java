@@ -1,5 +1,6 @@
 package fr.softwaresemantics.howmanydroid.db;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 
@@ -10,15 +11,17 @@ import java.util.Collection;
  */
 public class Category {
 
+    @JsonProperty
     @DatabaseField(generatedId = true)
     int categoryID;
-    @ForeignCollectionField(eager=false)
+    @JsonProperty
+    @ForeignCollectionField(eager = false)
     Collection<Calculus> Calculi;
-
+    @JsonProperty
     @DatabaseField(foreign = true)
     I18n name;
-
-    @DatabaseField(foreign = true,canBeNull = true)
+    @JsonProperty
+    @DatabaseField(foreign = true, canBeNull = true)
     I18n description;
 
     public Collection<Calculus> getCalculi() {

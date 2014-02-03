@@ -1,22 +1,30 @@
 package fr.softwaresemantics.howmanydroid.db;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
+
 /**
  * Created by christophe goessen on 19/01/14.
  */
 public class Locale implements Serializable {
     //@DatabaseField(generatedId = true)
     //private int localeId;
+    @JsonProperty("name")
     @DatabaseField(id = true)
     String name;
+    @JsonProperty("description")
     @DatabaseField(canBeNull = false)
     String description;
 
     public Locale() {
     }
-    public boolean equals(Locale l){return this.name.equals(l.name);}
+
+    public boolean equals(Locale l) {
+        return this.name.equals(l.name);
+    }
+
     public String getName() {
         return name;
     }
