@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.7.+'
+        classpath 'com.android.tools.build:gradle:0.7.1+'
     }
 }
 apply plugin: 'android'
@@ -15,6 +15,7 @@ repositories {
 configurations {
     beaver; jflex
 }
+
 
 dependencies {
     // Pour dépendances embarquées dans repository,
@@ -35,6 +36,10 @@ dependencies {
     compile 'org.beanshell:bsh:2.0b5'
 
     compile "com.j256.ormlite:ormlite-android:4.48"
+    //compile "org.codehaus.jackson:jackson-mapper-asl:1.9.13"
+    //compile "org.codehaus.jackson:jackson-core-asl:1.9.13"
+    compile 'com.fasterxml.jackson.core:jackson-core:2.1.4'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.1.4'
 
     beaver group: 'net.sf.beaver', name: 'beaver-ant', version: '0.9.11'
     jflex group: 'de.jflex', name: 'jflex', version: '1.4.3'
@@ -54,6 +59,13 @@ dependencies {
 }
 
 android {
+    //workaround gradle duplicate files bug with jackson
+    packagingOptions {
+    //    exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
     compileSdkVersion 16
     buildToolsVersion "19.0.0"
 
@@ -63,6 +75,7 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
 
     sourceSets {
         main {

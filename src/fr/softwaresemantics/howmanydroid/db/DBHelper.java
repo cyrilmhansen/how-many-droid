@@ -39,6 +39,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
     private Dao<Favorite, Integer> favoriteDao = null;
     private Dao<Assignment, Integer> assignmentDao = null;
     private Dao<History, Integer> historyDao = null;
+    private Dao<Category, Integer> categoryDao = null;
 
     @Override
     public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
@@ -58,6 +59,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, Unit.class);
             TableUtils.createTable(connectionSource, Assignment.class);
             TableUtils.createTable(connectionSource, History.class);
+            TableUtils.createTable(connectionSource, Category.class);
         } catch (SQLException e) {
             Log.e(DBHelper.class.getName(), "Can't create database", e);
             throw new RuntimeException(e);
@@ -164,9 +166,9 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
 
 
         try {
-            Dao<Locale,String> localeDao = DaoManager.createDao(connectionSource, Locale.class);
-            Dao<I18n,Integer> i18nDao = DaoManager.createDao(connectionSource, I18n.class);
-            Dao<Translation,Integer> translationDao = DaoManager.createDao(connectionSource, Translation.class);
+            Dao<Locale, String> localeDao = DaoManager.createDao(connectionSource, Locale.class);
+            Dao<I18n, Integer> i18nDao = DaoManager.createDao(connectionSource, I18n.class);
+            Dao<Translation, Integer> translationDao = DaoManager.createDao(connectionSource, Translation.class);
 
             I18n i18n = new I18n();
             i18n.setMsgID("HELLO");
@@ -182,7 +184,6 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
             tr.setLocale(lang);
             tr.setValue("Hello world!");
             translationDao.create(tr);
-
 
 
             lang = new Locale();
@@ -210,53 +211,68 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
         }
         return localeDao;
     }
+
     public Dao<I18n, String> getI18nDao() throws SQLException {
         if (i18nDao == null) {
             i18nDao = getDao(I18n.class);
         }
         return i18nDao;
     }
+
     public Dao<Expression, Integer> getExpressionDao() throws SQLException {
         if (expressionDao == null) {
             expressionDao = getDao(Expression.class);
         }
         return expressionDao;
     }
+
     public Dao<Calculus, Integer> getCalculusDao() throws SQLException {
         if (calculusDao == null) {
             calculusDao = getDao(Calculus.class);
         }
         return calculusDao;
     }
+
     public Dao<Translation, Integer> getTranslationDao() throws SQLException {
         if (translationDao == null) {
             translationDao = getDao(Translation.class);
         }
         return translationDao;
     }
+
     public Dao<Unit, Integer> getUnitDao() throws SQLException {
         if (unitDao == null) {
             unitDao = getDao(Unit.class);
         }
         return unitDao;
     }
+
     public Dao<Favorite, Integer> getFavoriteDao() throws SQLException {
         if (favoriteDao == null) {
             favoriteDao = getDao(Favorite.class);
         }
         return favoriteDao;
     }
+
     public Dao<Assignment, Integer> getAssignmentDao() throws SQLException {
         if (assignmentDao == null) {
             assignmentDao = getDao(Assignment.class);
         }
         return assignmentDao;
     }
+
     public Dao<History, Integer> getHistoryDao() throws SQLException {
         if (historyDao == null) {
             historyDao = getDao(History.class);
         }
         return historyDao;
+    }
+
+    public Dao<Category, Integer> getCategoryDao() throws SQLException {
+        if (categoryDao == null) {
+            categoryDao = getDao(Category.class);
+        }
+        return categoryDao;
     }
 
     @Override
@@ -276,6 +292,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.dropTable(connectionSource, Unit.class, true);
             TableUtils.dropTable(connectionSource, History.class, true);
             TableUtils.dropTable(connectionSource, Assignment.class, true);
+            TableUtils.dropTable(connectionSource, Category.class, true);
             // after we drop the old databases, we create the new ones
             onCreate(db, connectionSource);
         } catch (SQLException e) {

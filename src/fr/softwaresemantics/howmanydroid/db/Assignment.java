@@ -1,5 +1,7 @@
 package fr.softwaresemantics.howmanydroid.db;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
@@ -8,10 +10,13 @@ import java.io.Serializable;
  * Created by christophe Goessen on 23/01/14.
  */
 public class Assignment implements Serializable {
+    @JsonProperty
     @DatabaseField(generatedId = true)
     int assignmentID;
+    @JsonIgnore
     @DatabaseField(foreign = true)
     History history;
+
     public Parameter getParameter() {
         return parameter;
     }
@@ -36,8 +41,10 @@ public class Assignment implements Serializable {
         this.value = value;
     }
 
+    @JsonProperty
     @DatabaseField(foreign = true)
     Parameter parameter;
+    @JsonProperty
     @DatabaseField(canBeNull = false)
     String value;
 }

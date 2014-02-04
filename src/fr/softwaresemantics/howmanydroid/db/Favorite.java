@@ -1,5 +1,6 @@
 package fr.softwaresemantics.howmanydroid.db;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 
 import java.io.Serializable;
@@ -8,8 +9,10 @@ import java.io.Serializable;
  * Created by christophe Goessen on 23/01/14.
  */
 public class Favorite implements Serializable {
-@DatabaseField(generatedId = true)
+    @JsonProperty
+    @DatabaseField(generatedId = true)
     int favoriteID;
+    @JsonProperty
     @DatabaseField(foreign = true)
     Calculus calculus;
 
