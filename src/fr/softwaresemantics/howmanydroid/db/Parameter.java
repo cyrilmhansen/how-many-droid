@@ -21,7 +21,7 @@ public class Parameter implements Serializable {
     }
 
     @JsonProperty
-    @DatabaseField(foreign = true)
+    @DatabaseField(foreign = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     Unit unit;
 
     public void setExpression(Expression expression) {
@@ -30,7 +30,7 @@ public class Parameter implements Serializable {
 
     //avoid infinite recursion
     @JsonIgnore
-    @DatabaseField(foreign = true)
+    @DatabaseField(foreign = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     Expression expression;
 
     public String getName() {

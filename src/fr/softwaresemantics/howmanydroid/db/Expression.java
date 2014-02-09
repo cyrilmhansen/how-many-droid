@@ -31,7 +31,7 @@ public class Expression implements Serializable {
     }
 
     @JsonProperty
-    @DatabaseField(foreign = true)
+    @DatabaseField(foreign = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     Unit unit;
 
     public Calculus getCalculus() {
@@ -43,7 +43,7 @@ public class Expression implements Serializable {
     }
 
     @JsonIgnore
-    @DatabaseField(foreign = true)
+    @DatabaseField(foreign = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     Calculus calculus;
     @JsonProperty
     @DatabaseField

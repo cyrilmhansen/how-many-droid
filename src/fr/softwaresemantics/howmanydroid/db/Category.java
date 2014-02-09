@@ -18,10 +18,10 @@ public class Category {
     @ForeignCollectionField(eager = false)
     Collection<Calculus> Calculi;
     @JsonProperty
-    @DatabaseField(foreign = true)
+    @DatabaseField(foreign = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     I18n name;
     @JsonProperty
-    @DatabaseField(foreign = true, canBeNull = true)
+    @DatabaseField(foreign = true, canBeNull = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     I18n description;
 
     public Collection<Calculus> getCalculi() {

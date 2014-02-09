@@ -40,11 +40,11 @@ public class Translation implements Serializable {
     }
 
     @JsonProperty("locale")
-    @DatabaseField(foreign = true, uniqueCombo = true)
+    @DatabaseField(foreign = true, uniqueCombo = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     Locale locale;
     //not mapped in JSON to avoid loops
     @JsonIgnore
-    @DatabaseField(foreign = true, uniqueCombo = true)
+    @DatabaseField(foreign = true, uniqueCombo = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     I18n i18n;
     @JsonProperty("value")
     @DatabaseField(canBeNull = true)

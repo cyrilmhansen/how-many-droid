@@ -14,7 +14,7 @@ public class Assignment implements Serializable {
     @DatabaseField(generatedId = true)
     int assignmentID;
     @JsonIgnore
-    @DatabaseField(foreign = true)
+    @DatabaseField(foreign = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     History history;
 
     public Parameter getParameter() {
@@ -42,7 +42,7 @@ public class Assignment implements Serializable {
     }
 
     @JsonProperty
-    @DatabaseField(foreign = true)
+    @DatabaseField(foreign = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     Parameter parameter;
     @JsonProperty
     @DatabaseField(canBeNull = false)

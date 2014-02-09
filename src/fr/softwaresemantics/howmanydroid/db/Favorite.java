@@ -13,7 +13,7 @@ public class Favorite implements Serializable {
     @DatabaseField(generatedId = true)
     int favoriteID;
     @JsonProperty
-    @DatabaseField(foreign = true)
+    @DatabaseField(foreign = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     Calculus calculus;
 
     public int getFavoriteID() {

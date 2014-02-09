@@ -20,7 +20,7 @@ public class Calculus implements Serializable {
     @ForeignCollectionField(eager = false)
     Collection<Expression> expressionList;
     @JsonProperty
-    @DatabaseField(foreign = true)
+    @DatabaseField(foreign = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     I18n name;
 
     public Category getCategory() {
@@ -32,7 +32,7 @@ public class Calculus implements Serializable {
     }
 
     @JsonIgnore
-    @DatabaseField(foreign = true)
+    @DatabaseField(foreign = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     Category category;
 
     public I18n getDescription() {
@@ -52,7 +52,7 @@ public class Calculus implements Serializable {
     }
 
     @JsonProperty
-    @DatabaseField(foreign = true)
+    @DatabaseField(foreign = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     I18n description;
 
 
