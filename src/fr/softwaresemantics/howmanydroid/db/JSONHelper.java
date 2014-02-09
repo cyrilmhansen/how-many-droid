@@ -13,6 +13,7 @@ public class JSONHelper {
     public static void main(String[] args) {
 
         I18n hello = new I18n();
+        I18n JsonI18n;
         Translation trans = new Translation();
 
         Locale english = new Locale();
@@ -45,6 +46,10 @@ public class JSONHelper {
             System.out.println(fromJSON.getDescription());
 
             System.out.println(mapper.writeValueAsString(hello));
+            JsonI18n = mapper.readValue(mapper.writeValueAsString(hello),I18n.class);
+            System.out.println("obj->json->obj");
+            for (Translation tr: JsonI18n.getTranslations())
+                System.out.println(tr.getI18n().getMsgID()+"@"+tr.getLocale().getDescription()+":="+tr.getValue());
 
         } catch (IOException e) {
             e.printStackTrace();

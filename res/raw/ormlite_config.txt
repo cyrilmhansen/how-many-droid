@@ -1,5 +1,5 @@
 #
-# generated on 2014/02/01 05:13:58
+# generated on 2014/02/09 10:30:16
 #
 # --table-start--
 dataClass=fr.softwaresemantics.howmanydroid.db.Assignment
@@ -12,10 +12,14 @@ generatedId=true
 # --field-start--
 fieldName=history
 foreign=true
+foreignAutoRefresh=true
+foreignAutoCreate=true
 # --field-end--
 # --field-start--
 fieldName=parameter
 foreign=true
+foreignAutoRefresh=true
+foreignAutoCreate=true
 # --field-end--
 # --field-start--
 fieldName=value
@@ -39,14 +43,20 @@ foreignCollection=true
 # --field-start--
 fieldName=name
 foreign=true
+foreignAutoRefresh=true
+foreignAutoCreate=true
 # --field-end--
 # --field-start--
 fieldName=category
 foreign=true
+foreignAutoRefresh=true
+foreignAutoCreate=true
 # --field-end--
 # --field-start--
 fieldName=description
 foreign=true
+foreignAutoRefresh=true
+foreignAutoCreate=true
 # --field-end--
 # --table-fields-end--
 # --table-end--
@@ -66,10 +76,14 @@ foreignCollection=true
 # --field-start--
 fieldName=name
 foreign=true
+foreignAutoRefresh=true
+foreignAutoCreate=true
 # --field-end--
 # --field-start--
 fieldName=description
 foreign=true
+foreignAutoRefresh=true
+foreignAutoCreate=true
 # --field-end--
 # --table-fields-end--
 # --table-end--
@@ -89,10 +103,14 @@ foreignCollection=true
 # --field-start--
 fieldName=unit
 foreign=true
+foreignAutoRefresh=true
+foreignAutoCreate=true
 # --field-end--
 # --field-start--
 fieldName=calculus
 foreign=true
+foreignAutoRefresh=true
+foreignAutoCreate=true
 # --field-end--
 # --field-start--
 fieldName=expression
@@ -114,6 +132,8 @@ generatedId=true
 # --field-start--
 fieldName=calculus
 foreign=true
+foreignAutoRefresh=true
+foreignAutoCreate=true
 # --field-end--
 # --table-fields-end--
 # --table-end--
@@ -176,24 +196,20 @@ generatedId=true
 # --field-start--
 fieldName=unit
 foreign=true
+foreignAutoRefresh=true
+foreignAutoCreate=true
 # --field-end--
 # --field-start--
 fieldName=expression
 foreign=true
+foreignAutoRefresh=true
+foreignAutoCreate=true
 # --field-end--
 # --field-start--
 fieldName=name
 # --field-end--
 # --field-start--
 fieldName=value_type
-# --field-end--
-# --field-start--
-fieldName=expr
-columnName=expressionID
-canBeNull=false
-foreign=true
-foreignAutoRefresh=true
-foreignAutoCreate=true
 # --field-end--
 # --table-fields-end--
 # --table-end--
@@ -211,11 +227,15 @@ generatedId=true
 fieldName=locale
 foreign=true
 uniqueCombo=true
+foreignAutoRefresh=true
+foreignAutoCreate=true
 # --field-end--
 # --field-start--
 fieldName=i18n
 foreign=true
 uniqueCombo=true
+foreignAutoRefresh=true
+foreignAutoCreate=true
 # --field-end--
 # --field-start--
 fieldName=value
