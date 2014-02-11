@@ -17,6 +17,9 @@ public class Assignment implements Serializable {
     @DatabaseField(foreign = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     History history;
 
+    public Assignment() {
+    }
+
     public Parameter getParameter() {
         return parameter;
     }

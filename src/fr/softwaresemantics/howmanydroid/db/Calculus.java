@@ -1,5 +1,6 @@
 package fr.softwaresemantics.howmanydroid.db;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
@@ -22,7 +23,17 @@ public class Calculus implements Serializable {
     @JsonProperty
     @DatabaseField(foreign = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     I18n name;
-
+    @JsonCreator
+    public Calculus(@JsonProperty("calculusID") int _calculusID, @JsonProperty("expressionList") Collection<Expression> _expressionList,@JsonProperty("name") I18n _name,@JsonProperty("description") I18n _description)
+    {
+        calculusID=_calculusID;
+        expressionList=_expressionList;
+        name=_name;
+        description=_description;
+        //restore link to parent missing in json
+        for(Expression expr:expressionList)
+            expr.setCalculus(this);
+    }
     public Category getCategory() {
         return category;
     }
@@ -64,7 +75,7 @@ public class Calculus implements Serializable {
         return expressionList;
     }
 
-    public void setExpressionList(List<Expression> expressionList) {
+    public void setExpressionList(Collection<Expression> expressionList) {
         this.expressionList = expressionList;
     }
 

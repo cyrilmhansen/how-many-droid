@@ -19,6 +19,9 @@ public class Translation implements Serializable {
         return locale;
     }
 
+    public Translation() {
+    }
+
     public void setLocale(Locale locale) {
         this.locale = locale;
     }

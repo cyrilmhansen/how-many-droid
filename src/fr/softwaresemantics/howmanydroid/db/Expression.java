@@ -1,5 +1,6 @@
 package fr.softwaresemantics.howmanydroid.db;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.dao.ForeignCollection;
@@ -52,6 +53,18 @@ public class Expression implements Serializable {
     @DatabaseField
     String value_type;
 
+    @JsonCreator
+    public Expression(@JsonProperty("expressionID") int _expressionID,@JsonProperty("parameterList") Collection<Parameter> _parameterList,@JsonProperty("unit") Unit _unit, @JsonProperty("expression") String _expression,@JsonProperty("value_type") String _value_type)
+    {
+        expressionID=_expressionID;
+        expression=_expression;
+        parameterList=_parameterList;
+        unit=_unit;
+        value_type=_value_type;
+        for (Parameter param:parameterList)
+            param.setExpression(this);
+    }
+
     public Expression(String expression, String type) {
         this.expression = expression;
         this.value_type = type;
@@ -81,7 +94,7 @@ public class Expression implements Serializable {
         return parameterList;
     }
 
-    public void setParameterList(ForeignCollection<Parameter> parameterList) {
+    public void setParameterList(Collection<Parameter> parameterList) {
         this.parameterList = parameterList;
     }
 }

@@ -16,6 +16,9 @@ public class Favorite implements Serializable {
     @DatabaseField(foreign = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     Calculus calculus;
 
+    public Favorite() {
+    }
+
     public int getFavoriteID() {
         return favoriteID;
     }

@@ -10,12 +10,18 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.jscience.mathematics.number.Real;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringReader;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,9 +30,11 @@ import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.congrace.exp4j.UnknownFunctionException;
 import de.congrace.exp4j.UnparsableExpressionException;
+import fr.softwaresemantics.howmanydroid.db.Category;
 import fr.softwaresemantics.howmanydroid.db.DBHelper;
 import fr.softwaresemantics.howmanydroid.db.I18n;
 import fr.softwaresemantics.howmanydroid.db.Locale;
+import fr.softwaresemantics.howmanydroid.db.Translation;
 import fr.softwaresemantics.howmanydroid.model.ast.parser.ASTParser;
 import fr.softwaresemantics.howmanydroid.model.formula.FormulaSyntax;
 import fr.softwaresemantics.howmanydroid.ui.mockup.MockupInputParamActivity;
@@ -49,42 +57,35 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*
-
-        DBTest/Sample
-        DBHelper dbHelper = new DBHelper(this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        Cursor cursor = db.query("locale", new String[] {"name","description"}, null, null, null, null, null);
-        cursor.moveToFirst();
-
-        // Iterate the results
-        while (!cursor.isAfterLast()){
-            Log.w ("SQLite",cursor.getString(0) + ":" + cursor.getString(1));
-            cursor.moveToNext();
-        }
-        */
-        Log.i("ORMLite", "dbHelper created");
+        InputStream is = getResources().openRawResource(R.raw.database);
+        ObjectMapper mapper = new ObjectMapper();
         DBHelper dbHelper = new DBHelper(this);
 
         try {
-
-
-            Locale loc = dbHelper.getLocaleDao().queryForId("en_EN");
-            Log.i("ORMLite", loc.getDescription());
-            for (Locale lang:dbHelper.getLocaleDao().queryForAll())
-                Log.i("ORMLite", "lang="+lang.getDescription());
-            //Locale loc = dbHelper.getDao().queryForAll().get(0);
-
-
-            Collection<I18n> i18ns = dbHelper.getI18nDao().queryForAll();
-            Log.i("ORMLite",i18ns.size()+" I18n strings");
-            for (I18n i18n:i18ns)
+            List<Category> DBFromJson = mapper.readValue(is, mapper.getTypeFactory().constructCollectionType(List.class, Category.class));
+            for (Category cat: DBFromJson)
             {
-                for (Locale lang:dbHelper.getLocaleDao().queryForAll())
-                    Log.i("ORMLite", i18n.getMsgID()+" in "+lang.getDescription()+" is "+i18n.getValue(lang)+" !");
+                Log.i("DB:Json",mapper.writeValueAsString(cat));
+                dbHelper.DFSCreate(cat);
             }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            //Category category = dbHelper.getCategoryDao().queryForId(0);
+            for (Category cat: dbHelper.getCategoryDao().queryForAll())
+            {
+                Log.i("DB:Json",mapper.writeValueAsString(cat));
+                dbHelper.DFSCreate(cat);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
 

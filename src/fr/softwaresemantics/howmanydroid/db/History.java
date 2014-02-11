@@ -1,5 +1,6 @@
 package fr.softwaresemantics.howmanydroid.db;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
@@ -26,4 +27,14 @@ public class History implements Serializable {
     @JsonProperty
     @ForeignCollectionField(eager = true)
     Collection<Assignment> assignments;
+
+    public History(){}
+    @JsonCreator
+    public History(@JsonProperty("historyID") int _historyID,@JsonProperty("assignments") Collection<Assignment> _assignments)
+    {
+        historyID=_historyID;
+        assignments=_assignments;
+        for (Assignment ass:assignments)//:)
+            ass.setHistory(this);
+    }
 }

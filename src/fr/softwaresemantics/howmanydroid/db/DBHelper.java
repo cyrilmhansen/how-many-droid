@@ -40,6 +40,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
     private Dao<Assignment, Integer> assignmentDao = null;
     private Dao<History, Integer> historyDao = null;
     private Dao<Category, Integer> categoryDao = null;
+    private Dao<Parameter, Integer> parameterDao = null;
 
     @Override
     public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
@@ -66,6 +67,25 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
         }
 
 
+    }
+    public void DFSCreate(Category cat) throws SQLException {
+        for (Calculus cal:cat.getCalculi())
+            this.DFSCreate(cal);
+        getCategoryDao().createIfNotExists(cat);
+    }
+
+    private void DFSCreate(Calculus cal) throws SQLException {
+        for (Expression expr:cal.getExpressionList())
+        {
+            DFSCreate(expr);
+        }
+        getCalculusDao().createIfNotExists(cal);
+    }
+
+    private void DFSCreate(Expression expr) throws SQLException {
+        for (Parameter param:expr.getParameterList())
+            getParameterDao().createIfNotExists(param);
+        getExpressionDao().createIfNotExists(expr);
     }
 
     public Dao<Locale, String> getLocaleDao() throws SQLException {
@@ -136,6 +156,12 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
             categoryDao = getDao(Category.class);
         }
         return categoryDao;
+    }
+    public Dao<Parameter, Integer> getParameterDao() throws SQLException {
+        if (parameterDao == null) {
+            parameterDao = getDao(Parameter.class);
+        }
+        return parameterDao;
     }
 
     @Override
