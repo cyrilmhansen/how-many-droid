@@ -12,5 +12,11 @@
     <string name="demo5">Demo/Test Mathjax MathML</string>
     <string name="demo6">Demo/Test Parser / Eval</string>
     <string name="demo7">Demo Mockup 1</string>
+    <string name="demo8">Test Reuse Webview</string>
+
+    <string name="title_activity_web_view_reuse">WebViewReuseActivity</string>
+
+    <!--<string name="hello_world">Hello world!</string>-->
+    <!--<string name="action_settings">Settings</string>-->
 
 </resources>

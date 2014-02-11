@@ -1,6 +1,7 @@
 package fr.softwaresemantics.howmanydroid.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.util.Log;
 
@@ -17,7 +18,7 @@ import java.io.InputStream;
  */
 public class AssetsUtil {
 
-    public static InputStream loadAsset(Activity context, String path, String filename) {
+    public static InputStream loadAsset(Context context, String path, String filename) {
         AssetManager assetManager = context.getResources().getAssets();
         InputStream inputStream = null;
 
@@ -32,7 +33,7 @@ public class AssetsUtil {
         return inputStream;
     }
 
-    public static String loadUTF8AssetAsString(Activity context, String path, String filename) throws Exception {
+    public static String loadUTF8AssetAsString(Context context, String path, String filename) throws Exception {
         final InputStream is = loadAsset(context, path, filename);
 
         InputSupplier<InputStream> supplier = new InputSupplier<InputStream>() {

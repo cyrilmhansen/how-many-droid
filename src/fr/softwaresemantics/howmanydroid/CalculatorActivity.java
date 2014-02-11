@@ -30,6 +30,7 @@ import fr.softwaresemantics.howmanydroid.db.Locale;
 import fr.softwaresemantics.howmanydroid.model.ast.parser.ASTParser;
 import fr.softwaresemantics.howmanydroid.model.formula.FormulaSyntax;
 import fr.softwaresemantics.howmanydroid.ui.mockup.MockupInputParamActivity;
+import fr.softwaresemantics.howmanydroid.ui.mockup.WebViewReuseActivity;
 import fr.softwaresemantics.howmanydroid.util.AssetsUtil;
 import fr.softwaresemantics.howmanydroid.util.MJView;
 import fr.softwaresemantics.howmanydroid.util.MsgDialog;
@@ -166,7 +167,7 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         displayTestInDialog("Beanshell Demo 1", display);
     }
 
-    private void displayTestInDialog(String title, String msg) {
+    public void displayTestInDialog(String title, String msg) {
         MsgDialog.showDialog(this, title, msg);
     }
 
@@ -228,6 +229,9 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
             case R.id.demo7:
                 runMockup();
                 return true;
+            case R.id.demo8:
+                runTestReuseWebview();
+                return true;
             case R.id.help:
                 //  showHelp();
                 return true;
@@ -272,6 +276,13 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         Intent i = new Intent(this, MockupInputParamActivity.class);
         startActivity(i);
     }
+
+    public void runTestReuseWebview() {
+        Intent i = new Intent(this, WebViewReuseActivity.class);
+        startActivity(i);
+    }
+
+
 
 
     public void onClick(View v) {

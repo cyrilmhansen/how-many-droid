@@ -15,7 +15,7 @@
 </script>
 
 </head>
-<body>
+<body style="background-color:orange;">
 
 <script>
   //
@@ -50,38 +50,88 @@
     //  math entered by the user
     //
     window.UpdateMathTex = function (TeX) {
+        texOutput.style.visibility="hidden";
+
       QUEUE.Push(["Text",texMath[0],"\\displaystyle{"+TeX+"}"]);
 	   amOutput.style.display="none";
 	   mmOutput.style.display="none";
 	   texOutput.style.display="block";
+
+
+
+	    MathJax.Hub.Queue(function () {
+    // Callback Android to say that loading is complete
+     texOutput.style.visibility="visible";
+    MJView.notifyMJTypesetComplete(texOutput.offsetHeight);
+  });
     }
 
         window.UpdateMathTexML = function (TeX, line) {
+
+             texOutput.style.visibility="hidden";
+
       QUEUE.Push(["Text",texMath[line],"\\displaystyle{"+TeX+"}"]);
 	   amOutput.style.display="none";
 	   mmOutput.style.display="none";
 	   texOutput.style.display="block";
+
+
+
+	   	    MathJax.Hub.Queue(function () {
+	   	      texOutput.style.visibility="visible";
+    // Callback Android to say that loading is complete
+    MJView.notifyMJTypesetComplete(texOutput.offsetHeight);
+  });
     }
 	
 	   window.UpdateMathAscii = function (ascii) {
+	              // amOutput.style.visibility="hidden";
+
+
        QUEUE.Push(["Text",amMath[0],ascii]);
-	   amOutput.style.display="block";
+	   amOutput.style.display="none";
 	   mmOutput.style.display="none";
 	   texOutput.style.display="none";
+
+
+
+	   	    MathJax.Hub.Queue(function () {
+	   	 //   amOutput.style.visibility="visible";
+	   	    amOutput.style.display="block";
+    // Callback Android to say that loading is complete
+    MJView.notifyMJTypesetComplete(amOutput.offsetHeight);
+  });
     }
 
     window.UpdateMathAsciiML = function (ascii, line) {
+       //     amOutput.style.visibility="hidden";
        QUEUE.Push(["Text",amMath[line],ascii]);
-	   amOutput.style.display="block";
+	   amOutput.style.display="none";
 	   mmOutput.style.display="none";
 	   texOutput.style.display="none";
+
+
+
+	   	    MathJax.Hub.Queue(function () {
+	   	 //   amOutput.style.visibility="visible";
+	   	     amOutput.style.display="block";
+    // Callback Android to say that loading is complete
+    MJView.notifyMJTypesetComplete(amOutput.offsetHeight);
+  });
     }
 	
    window.UpdateMath = function (ml) {
+         mmOutput.style.visibility="hidden";
        QUEUE.Push(["Text",mmMath[0],ml]);
 	   amOutput.style.display="none";
 	   mmOutput.style.display="block";
 	   texOutput.style.display="none";
+
+	   	    MathJax.Hub.Queue(function () {
+    // Callback Android to say that loading is complete
+      mmOutput.style.visibility="visible";
+    MJView.notifyMJTypesetComplete(mmOutput.offsetHeight);
+  });
     }
 
        window.UpdateMathML = function (ml, line) {
@@ -89,6 +139,12 @@
 	   amOutput.style.display="none";
 	   mmOutput.style.display="block";
 	   texOutput.style.display="none";
+
+	   	    MathJax.Hub.Queue(function () {
+    // Callback Android to say that loading is complete
+    mmOutput.style.visibility="visible";
+    MJView.notifyMJTypesetComplete(mmOutput.offsetHeight);
+  });
     }
 
      MathJax.Hub.Queue(function () {
@@ -101,14 +157,14 @@
 </script>
 
 
-<div id="TexOutput">
+<div id="TexOutput" style="background-color:blue;">
 <!-- style="visibility:hidden" -->
     <!-- ${}$<BR/>${}$<BR/>${}$<BR/>${}$<BR/>${}$ -->
     </div>
-    <div id="AMOutput">
+    <div id="AMOutput" style="background-color:yellow;">
    <!-- ``<BR/>``<BR/>``<BR/>``<BR/>``-->
     </div>
-    <div id="MMOutput">
+    <div id="MMOutput" style="background-color:green;">
         <!-- <math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math><BR/>
          <math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math><BR/>
          <math  xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math><BR/>
