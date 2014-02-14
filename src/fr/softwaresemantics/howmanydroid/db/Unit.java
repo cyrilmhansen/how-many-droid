@@ -1,5 +1,6 @@
 package fr.softwaresemantics.howmanydroid.db;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 
@@ -12,7 +13,7 @@ public class Unit implements Serializable {
     public Unit() {
     }
 
-    @JsonProperty
+    @JsonIgnore
     @DatabaseField(generatedId = true)
     int unitID;
     @JsonProperty

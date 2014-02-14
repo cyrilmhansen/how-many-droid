@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 
 public class Parameter implements Serializable {
-    @JsonProperty
+    @JsonIgnore
     @DatabaseField(generatedId = true)
     private int parameterID;
 

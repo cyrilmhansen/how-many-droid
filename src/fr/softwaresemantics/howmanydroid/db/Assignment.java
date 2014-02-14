@@ -10,7 +10,7 @@ import java.io.Serializable;
  * Created by christophe Goessen on 23/01/14.
  */
 public class Assignment implements Serializable {
-    @JsonProperty
+    @JsonIgnore
     @DatabaseField(generatedId = true)
     int assignmentID;
     @JsonIgnore

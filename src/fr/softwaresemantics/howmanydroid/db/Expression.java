@@ -16,7 +16,7 @@ import java.util.Collection;
 
 //@DatabaseTable(tableName = "expression")
 public class Expression implements Serializable {
-    @JsonProperty
+    @JsonIgnore
     @DatabaseField(generatedId = true)
     private int expressionID;
     @JsonProperty
@@ -54,9 +54,9 @@ public class Expression implements Serializable {
     String value_type;
 
     @JsonCreator
-    public Expression(@JsonProperty("expressionID") int _expressionID,@JsonProperty("parameterList") Collection<Parameter> _parameterList,@JsonProperty("unit") Unit _unit, @JsonProperty("expression") String _expression,@JsonProperty("value_type") String _value_type)
+    public Expression(/*@JsonProperty("expressionID") int _expressionID,*/@JsonProperty("parameterList") Collection<Parameter> _parameterList,@JsonProperty("unit") Unit _unit, @JsonProperty("expression") String _expression,@JsonProperty("value_type") String _value_type)
     {
-        expressionID=_expressionID;
+       /* expressionID=_expressionID;*/
         expression=_expression;
         parameterList=_parameterList;
         unit=_unit;

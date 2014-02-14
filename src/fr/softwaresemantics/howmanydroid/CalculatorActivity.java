@@ -30,6 +30,7 @@ import de.congrace.exp4j.Calculable;
 import de.congrace.exp4j.ExpressionBuilder;
 import de.congrace.exp4j.UnknownFunctionException;
 import de.congrace.exp4j.UnparsableExpressionException;
+import fr.softwaresemantics.howmanydroid.db.Calculus;
 import fr.softwaresemantics.howmanydroid.db.Category;
 import fr.softwaresemantics.howmanydroid.db.DBHelper;
 import fr.softwaresemantics.howmanydroid.db.I18n;
@@ -63,10 +64,12 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
 
         try {
             List<Category> DBFromJson = mapper.readValue(is, mapper.getTypeFactory().constructCollectionType(List.class, Category.class));
+            Log.i("DB:Json","Inserting to db");
             for (Category cat: DBFromJson)
             {
-                Log.i("DB:Json",mapper.writeValueAsString(cat));
-                dbHelper.DFSCreate(cat);
+                Log.i("DB:Json", mapper.writeValueAsString(cat));
+                dbHelper.create(cat);
+
             }
 
         } catch (IOException e) {
@@ -77,10 +80,25 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
 
         try {
             //Category category = dbHelper.getCategoryDao().queryForId(0);
+            Log.i("DB:Json","Reading back from db");
             for (Category cat: dbHelper.getCategoryDao().queryForAll())
             {
                 Log.i("DB:Json",mapper.writeValueAsString(cat));
-                dbHelper.DFSCreate(cat);
+                //dbHelper.DFSCreate(cat);
+                Log.i("DB:Json","Testing lazy collection retrieval");
+                for (Calculus cal: cat.getCalculi())
+                    Log.i("DB:Json",mapper.writeValueAsString(cal));
+
+            }
+            for (I18n i18n: dbHelper.getI18nDao().queryForAll())
+            {
+                Log.i("DB:Json",mapper.writeValueAsString(i18n));
+                //dbHelper.DFSCreate(lang);
+            }
+            for (Locale lang: dbHelper.getLocaleDao().queryForAll())
+            {
+                Log.i("DB:Json",mapper.writeValueAsString(lang));
+                //dbHelper.DFSCreate(lang);
             }
 
         } catch (SQLException e) {

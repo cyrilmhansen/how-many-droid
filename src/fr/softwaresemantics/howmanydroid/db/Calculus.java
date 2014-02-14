@@ -14,7 +14,7 @@ import java.util.List;
  * Created by Christophe Goessen on 30/12/13.
  */
 public class Calculus implements Serializable {
-    @JsonProperty
+    @JsonIgnore
     @DatabaseField(generatedId = true)
     int calculusID;
     @JsonProperty
@@ -24,9 +24,9 @@ public class Calculus implements Serializable {
     @DatabaseField(foreign = true,foreignAutoCreate = true,foreignAutoRefresh = true)
     I18n name;
     @JsonCreator
-    public Calculus(@JsonProperty("calculusID") int _calculusID, @JsonProperty("expressionList") Collection<Expression> _expressionList,@JsonProperty("name") I18n _name,@JsonProperty("description") I18n _description)
+    public Calculus(/*@JsonProperty("calculusID") int _calculusID,*/ @JsonProperty("expressionList") Collection<Expression> _expressionList,@JsonProperty("name") I18n _name,@JsonProperty("description") I18n _description)
     {
-        calculusID=_calculusID;
+        /*calculusID=_calculusID;*/
         expressionList=_expressionList;
         name=_name;
         description=_description;

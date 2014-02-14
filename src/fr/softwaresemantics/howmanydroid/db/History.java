@@ -1,6 +1,7 @@
 package fr.softwaresemantics.howmanydroid.db;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
@@ -12,7 +13,7 @@ import java.util.Collection;
  * Created by christophe Goessen on 23/01/14.
  */
 public class History implements Serializable {
-    @JsonProperty
+    @JsonIgnore
     @DatabaseField(generatedId = true)
     int historyID;
 
@@ -30,9 +31,9 @@ public class History implements Serializable {
 
     public History(){}
     @JsonCreator
-    public History(@JsonProperty("historyID") int _historyID,@JsonProperty("assignments") Collection<Assignment> _assignments)
+    public History(/*@JsonProperty("historyID") int _historyID,*/@JsonProperty("assignments") Collection<Assignment> _assignments)
     {
-        historyID=_historyID;
+       /* historyID=_historyID;*/
         assignments=_assignments;
         for (Assignment ass:assignments)//:)
             ass.setHistory(this);

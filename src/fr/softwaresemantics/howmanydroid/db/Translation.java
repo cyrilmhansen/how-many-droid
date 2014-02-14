@@ -11,7 +11,7 @@ import java.io.Serializable;
  * Created by christophe Goessen on 22/01/14.
  */
 public class Translation implements Serializable {
-    @JsonProperty("TranslationID")
+    @JsonIgnore
     @DatabaseField(generatedId = true, canBeNull = false)
     int TranslationID;
 

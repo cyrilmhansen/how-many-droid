@@ -12,6 +12,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import fr.softwaresemantics.howmanydroid.R;
 
@@ -22,7 +23,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
 
 
     private static final String DATABASE_NAME = "howmanydroid.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 8;
 
     private RuntimeExceptionDao<Locale, Integer> localeRuntimeDao = null;
 
@@ -68,26 +69,56 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
 
 
     }
-    public void DFSCreate(Category cat) throws SQLException {
+    public Locale create (Locale lang) throws SQLException {
+        return getLocaleDao().createIfNotExists(lang);
+    }
+    public Translation create(Translation trans) throws SQLException {
+        this.create(trans.getLocale());
+        return getTranslationDao().createIfNotExists(trans);
+    }
+    public I18n create(I18n i18n) throws SQLException {
+        for(Translation trans: i18n.getTranslations())
+        this.create(trans);
+        Log.d("I18n Persist","adding "+i18n.getMsgID());
+        return getI18nDao().createIfNotExists(i18n);
+    }
+    public Category create(Category cat) throws SQLException {
+        //ArrayList<Calculus> calc = new ArrayList<Calculus>();
+
+        Log.d("Category Persist","adding cat with "+cat.getCalculi().size()+" formulae");
+        cat = getCategoryDao().createIfNotExists(cat);
         for (Calculus cal:cat.getCalculi())
-            this.DFSCreate(cal);
-        getCategoryDao().createIfNotExists(cat);
+        {
+            //cal.setCategory(cat); //json was bogus
+            this.create(cal);
+        }
+        //cat.setCalculi(calc);
+        this.create(cat.getDescription());
+        this.create(cat.getName());
+        return cat;
     }
 
-    private void DFSCreate(Calculus cal) throws SQLException {
+    private Calculus create(Calculus cal) throws SQLException {
+        //ArrayList<Expression> exprs = new ArrayList<Expression>();
         for (Expression expr:cal.getExpressionList())
         {
-            DFSCreate(expr);
+            this.create(expr);
         }
-        getCalculusDao().createIfNotExists(cal);
+        this.create(cal.getName());
+        this.create(cal.getDescription());
+        Log.d("Calculus Persist","adding");
+        return getCalculusDao().createIfNotExists(cal);
     }
 
-    private void DFSCreate(Expression expr) throws SQLException {
+    private Expression create(Expression expr) throws SQLException {
+        //ArrayList<Parameter> params = new ArrayList<Parameter>();
         for (Parameter param:expr.getParameterList())
-            getParameterDao().createIfNotExists(param);
-        getExpressionDao().createIfNotExists(expr);
+            this.create(param);
+        return getExpressionDao().createIfNotExists(expr);
     }
-
+    public Parameter create (Parameter param) throws SQLException {
+        return getParameterDao().createIfNotExists(param);
+    }
     public Dao<Locale, String> getLocaleDao() throws SQLException {
         if (localeDao == null) {
             localeDao = getDao(Locale.class);
@@ -163,7 +194,8 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
         }
         return parameterDao;
     }
-
+    public void emptyDataBase ()
+    {}
     @Override
     public void onUpgrade(SQLiteDatabase db, ConnectionSource connectionSource, int oldVersion, int newVersion) {
 
@@ -188,7 +220,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
             Log.e(DBHelper.class.getName(), "Can't drop databases", e);
             throw new RuntimeException(e);
         }
-        onCreate(db);
+        //onCreate(db);
 
 
     }
