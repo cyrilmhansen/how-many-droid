@@ -3,7 +3,7 @@
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:minWidth="100dp">
 
@@ -46,7 +46,7 @@
 
     <WebView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/webViewFormulaPres"
         android:layout_gravity="center_vertical" />
 
@@ -71,7 +71,9 @@
         android:text="A1"
         android:id="@+id/rBtnVar1"
         android:layout_weight="1"
-        android:checked="true" />
+        android:checked="true"
+            android:onClick="onRadioButtonClicked"
+            />
 
         <RadioButton
             android:layout_width="wrap_content"
@@ -79,7 +81,8 @@
             android:text="R"
             android:id="@+id/rBtnVar2"
             android:layout_weight="1"
-            android:checked="false" />
+            android:checked="false"
+            android:onClick="onRadioButtonClicked" />
 
         <RadioButton
             android:layout_width="wrap_content"
@@ -87,13 +90,14 @@
             android:text="S"
             android:id="@+id/rBtnVar3"
             android:layout_weight="1"
-            android:checked="false" />
+            android:checked="false"
+            android:onClick="onRadioButtonClicked" />
         </RadioGroup>
 
 
     <WebView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:id="@+id/webViewComputationDetail"
         android:layout_gravity="center_vertical" />
 

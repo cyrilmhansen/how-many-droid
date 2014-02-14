@@ -1,9 +1,11 @@
 package fr.softwaresemantics.howmanydroid.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.webkit.WebView;
 
 import fr.softwaresemantics.howmanydroid.R;
@@ -14,27 +16,50 @@ import fr.softwaresemantics.howmanydroid.model.formula.FormulaSyntax;
  */
 public class MJView {
 
-    private Activity context;
+    private Context context;
     private WebView w;
     private boolean isInitializing;
     private boolean somethingWaitingToDisplay;
+
+    private long timeStampStartTypeSet;
+    private int lastTypeSetDelayMs;
 
     private FormulaSyntax syntax;
     private String[] formula;
 
 
-    public MJView(Activity context, WebView w) {
+    public MJView(Context context, WebView w, int nbLines) {
         formula = new String[2];
         this.w = w;
         this.context = context;
-        initMathjax(w);
+        initMathjax(w, nbLines);
     }
 
-    private void initMathjax(WebView w) {
+    public WebView getWebView() {
+        return w;
+    }
+
+    private void initMathjax(WebView w, int nbLines) {
         isInitializing = true;
+        w.setVisibility(View.GONE);
         w.getSettings().setJavaScriptEnabled(true);
         w.addJavascriptInterface(this, "MJView");
-        w.loadUrl("file:///android_asset/baseDocMj3.html");
+        w.loadUrl("file:///android_asset/baseDocMj3.html?nbLines="+nbLines);
+
+    }
+    public void notifyMJTypesetComplete(int blockHeight) {
+
+        lastTypeSetDelayMs = (int) (System.currentTimeMillis() - timeStampStartTypeSet);
+        timeStampStartTypeSet = 0;
+        Log.i("notifyMJTypesetComplete", "MJTypesetComplete in ms for " + lastTypeSetDelayMs + " " + formula);
+        Log.i("notifyMJTypesetComplete", "block height =" + blockHeight);
+        // w.setMinimumHeight(blockHeight+50); // TODO Temp debug ?
+        w.getLayoutParams().height = blockHeight * 5 +  10;
+        w.setVisibility(View.VISIBLE);
+    }
+
+    public int getLastTypeSetDelayMs(){
+        return lastTypeSetDelayMs;
     }
 
     public void notifyMJInitComplete() {
@@ -57,6 +82,8 @@ public class MJView {
     }
 
     public void displayMath(FormulaSyntax syntax, String formula) {
+        Log.i("displayMath", "MJTypesetComplete");
+        timeStampStartTypeSet = System.currentTimeMillis();
         displayMath(syntax, formula, 0);
         // FIXME? : effacer les autres lignes ?
     }
@@ -74,22 +101,11 @@ public class MJView {
         }
     }
 
-//    public void updateFormula(FormulaSyntax syntax, String formula) {
-//        switch (syntax) {
-//            case ASCII_MATHML:
-//                w.loadUrl("javascript:UpdateMathAsciiML('" + formula + "', 0);");
-//                break;
-//            case TEX:
-//                // Attention les formules Tex doivent quoter les _\
-//                String quoted = formula.replace("\\", "\\\\");
-//                w.loadUrl("javascript:UpdateMathTexML('" + quoted + "', 0);");
-//                break;
-//            case DISPLAY_MATHML:
-//                String quoted2 = formula.replace("\\", "\\\\");
-//                w.loadUrl("javascript:UpdateMathML('" + quoted2 + "', 0);");
-//                break;
-//        }
-//    }
+
+    public void clearAllAndHide() {
+        displayMath(FormulaSyntax.ASCII_MATHML, "", 0);
+        w.setVisibility(View.GONE);
+    }
 
     public void updateFormula(FormulaSyntax syntax, String formula, int line) {
         switch (syntax) {

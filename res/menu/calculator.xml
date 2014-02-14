@@ -32,9 +32,14 @@
 
 
     <item
-        android:id="@+id/demo7"
-        android:orderInCategory="27"
-        android:title="@string/demo7" />
+    android:id="@+id/demo7"
+    android:orderInCategory="27"
+    android:title="@string/demo7" />
+
+    <item
+        android:id="@+id/demo8"
+        android:orderInCategory="28"
+        android:title="@string/demo8" />
 
     <item
         android:id="@+id/action_settings"

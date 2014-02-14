@@ -107,12 +107,14 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
             e.printStackTrace();
         }
 
+        //displayTestInDialog("I18N via DB", localeMsg);
+
         setContentView(R.layout.activity_calculator);
 
         WebView w = (WebView) findViewById(R.id.mathjaxview);
         // w.getSettings().setJavaScriptEnabled(true);
 
-        mjView = new MJView(this, w);
+        mjView = new MJView(this, w, 1);
         // initMathjax(w);
         initButtonListener(w);
 
@@ -177,7 +179,7 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         displayTestInDialog("Beanshell Demo 1", display);
     }
 
-    private void displayTestInDialog(String title, String msg) {
+    public void displayTestInDialog(String title, String msg) {
         MsgDialog.showDialog(this, title, msg);
     }
 
@@ -239,6 +241,9 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
             case R.id.demo7:
                 runMockup();
                 return true;
+            case R.id.demo8:
+                runTestReuseWebview();
+                return true;
             case R.id.help:
                 //  showHelp();
                 return true;
@@ -283,6 +288,13 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         Intent i = new Intent(this, MockupInputParamActivity.class);
         startActivity(i);
     }
+
+    public void runTestReuseWebview() {
+        Intent i = new Intent(this, WebViewReuseActivity.class);
+        startActivity(i);
+    }
+
+
 
 
     public void onClick(View v) {
