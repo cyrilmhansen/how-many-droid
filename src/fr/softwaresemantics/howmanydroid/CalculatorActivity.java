@@ -39,6 +39,7 @@ import fr.softwaresemantics.howmanydroid.db.Translation;
 import fr.softwaresemantics.howmanydroid.model.ast.parser.ASTParser;
 import fr.softwaresemantics.howmanydroid.model.formula.FormulaSyntax;
 import fr.softwaresemantics.howmanydroid.ui.mockup.MockupInputParamActivity;
+import fr.softwaresemantics.howmanydroid.ui.mockup.WebViewReuseActivity;
 import fr.softwaresemantics.howmanydroid.util.AssetsUtil;
 import fr.softwaresemantics.howmanydroid.util.MJView;
 import fr.softwaresemantics.howmanydroid.util.MsgDialog;
