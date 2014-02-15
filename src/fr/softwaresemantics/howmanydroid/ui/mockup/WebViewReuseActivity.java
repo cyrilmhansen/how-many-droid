@@ -28,7 +28,6 @@ public class WebViewReuseActivity extends Activity {
 
     private FrameLayout frameLayout;
     private static FrameLayout frameLayout1;
-    private MJWebViewFragment fragment;
     private LinearLayout ll;
     private MJView mjv6;
 
