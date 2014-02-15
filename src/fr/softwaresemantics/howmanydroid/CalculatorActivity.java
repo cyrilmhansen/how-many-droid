@@ -12,6 +12,8 @@ import android.widget.Button;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.j256.ormlite.stmt.PreparedQuery;
+import com.j256.ormlite.stmt.QueryBuilder;
 
 import org.jscience.mathematics.number.Real;
 
@@ -22,6 +24,7 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -59,17 +62,41 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        reloadAndCheckDB();
+
+        //displayTestInDialog("I18N via DB", localeMsg);
+
+        setContentView(R.layout.activity_calculator);
+
+        WebView w = (WebView) findViewById(R.id.mathjaxview);
+        // w.getSettings().setJavaScriptEnabled(true);
+
+        mjView = new MJView(this, w, 1);
+        // initMathjax(w);
+        initButtonListener(w);
+
+        modeDemo = true;
+        demoParseEval();
+    }
+
+    private void reloadAndCheckDB() {
         InputStream is = getResources().openRawResource(R.raw.database);
         ObjectMapper mapper = new ObjectMapper();
         DBHelper dbHelper = new DBHelper(this);
 
         try {
             List<Category> DBFromJson = mapper.readValue(is, mapper.getTypeFactory().constructCollectionType(List.class, Category.class));
-            Log.i("DB:Json","Inserting to db");
+            Log.i("DB:Json", "Inserting to db");
             for (Category cat: DBFromJson)
             {
                 Log.i("DB:Json", mapper.writeValueAsString(cat));
                 dbHelper.create(cat);
+
+                // TODO fonction récursive pour créer les enfants ?
+                for (Category cat2: cat.getChildren()) {
+                    Log.i("DB:Json", mapper.writeValueAsString(cat2));
+                    dbHelper.create(cat2);
+                }
 
             }
 
@@ -102,25 +129,53 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
                 //dbHelper.DFSCreate(lang);
             }
 
+            for (Category cat: dbHelper.getCategoryDao().queryForAll())
+            {
+                Log.i("DB:Json",mapper.writeValueAsString(cat));
+                //dbHelper.DFSCreate(lang);
+            }
+
+
+
+            Map<String, Object> criteriaMapParent = new HashMap<String, Object>();
+            criteriaMapParent.put("parent_id", null);
+
+            // does not work
+            QueryBuilder<Category, Integer> queryBuilder =
+                    dbHelper.getCategoryDao().queryBuilder();
+            PreparedQuery<Category> rootCatQuery = queryBuilder.where().isNull("parent_id").prepare();
+
+// query for all accounts that have "qwerty" as a password
+          //  List<Account> accountList = accountDao.query(preparedQuery);
+
+
+// the 'password' field must be equal to "qwerty"
+           // queryBuilder.where().eq(Account.PASSWORD_FIELD_NAME, "qwerty");
+// prepare our sql statement
+
+            List<Category> catRoot1 = dbHelper.getCategoryDao().query(rootCatQuery);
+            for (Category cat: catRoot1)
+            {
+                Log.i("catRoot1",mapper.writeValueAsString(cat));
+                //dbHelper.DFSCreate(lang);
+            }
+
+            for (Category rootCat : catRoot1) {
+            criteriaMapParent.put("parent_id", rootCat);
+            List<Category> catList2 = dbHelper.getCategoryDao().queryForFieldValues(criteriaMapParent);
+
+            for (Category cat: catList2)
+            {
+                Log.i("catList2",mapper.writeValueAsString(cat));
+                //dbHelper.DFSCreate(lang);
+            }
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-
-        //displayTestInDialog("I18N via DB", localeMsg);
-
-        setContentView(R.layout.activity_calculator);
-
-        WebView w = (WebView) findViewById(R.id.mathjaxview);
-        // w.getSettings().setJavaScriptEnabled(true);
-
-        mjView = new MJView(this, w, 1);
-        // initMathjax(w);
-        initButtonListener(w);
-
-        modeDemo = true;
-        demoParseEval();
     }
 
     private void demoParseEval() {

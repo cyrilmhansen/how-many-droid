@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebView;
 
 import fr.softwaresemantics.howmanydroid.R;
@@ -47,15 +48,29 @@ public class MJView {
         w.loadUrl("file:///android_asset/baseDocMj3.html?nbLines="+nbLines);
 
     }
-    public void notifyMJTypesetComplete(int blockHeight) {
+    public void notifyMJTypesetComplete(final int blockHeight) {
 
         lastTypeSetDelayMs = (int) (System.currentTimeMillis() - timeStampStartTypeSet);
         timeStampStartTypeSet = 0;
         Log.i("notifyMJTypesetComplete", "MJTypesetComplete in ms for " + lastTypeSetDelayMs + " " + formula);
         Log.i("notifyMJTypesetComplete", "block height =" + blockHeight);
         // w.setMinimumHeight(blockHeight+50); // TODO Temp debug ?
-        w.getLayoutParams().height = blockHeight * 5 +  10;
-        w.setVisibility(View.VISIBLE);
+
+
+        // Cette notification est exécuté dans un thread spécifique "Java Bridge"
+        // impropre à l'appel de la webview
+        Runnable myRunnable = new Runnable() {
+            public void run() {
+                ViewGroup.LayoutParams layoutParams = w.getLayoutParams();
+                if (layoutParams != null) {
+                layoutParams.height = blockHeight * 5 +  10;
+                } else {
+                    Log.e("notifyMJTypesetComplete", "called too early / layoutParams null");
+                }
+                w.setVisibility(View.VISIBLE);
+                }
+            };
+            runInUIThread( myRunnable);
     }
 
     public int getLastTypeSetDelayMs(){
@@ -68,7 +83,6 @@ public class MJView {
         if (somethingWaitingToDisplay) {
             // Cette notification est exécuté dans un thread spécifique "Java Bridge"
             // impropre à l'appel de la webview
-            Handler mainHandler = new Handler(context.getMainLooper());
             Runnable myRunnable = new Runnable() {
                 public void run() {
                     for (int i = 0; i < formula.length; i++) {
@@ -77,8 +91,23 @@ public class MJView {
                          updateFormula(syntax, formula[i],i);
                     }
                 }};
-            mainHandler.post(myRunnable);
+            runInUIThread( myRunnable);
         }
+    }
+
+    private void runInUIThread(Runnable myRunnable) {
+        // Cette notification est exécuté dans un thread spécifique "Java Bridge"
+        // impropre à l'appel de la webview
+        Handler mainHandler = new Handler(context.getMainLooper());
+//        Runnable myRunnable = new Runnable() {
+//            public void run() {
+//                for (int i = 0; i < formula.length; i++) {
+//                    if (formula[i] == null)
+//                        break;
+//                    updateFormula(syntax, formula[i],i);
+//                }
+//            }};
+        mainHandler.post(myRunnable);
     }
 
     public void displayMath(FormulaSyntax syntax, String formula) {

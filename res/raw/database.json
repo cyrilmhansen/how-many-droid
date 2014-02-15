@@ -76,6 +76,123 @@
           "value": "Common formulae for usual geometrical calculus (e.g. area, volume of basic shapes)"
         }
       ]
+    } ,
+         "children" :  []
+  },
+  {
+      "name": {
+        "msgID": "GEOM_BASIC1",
+        "translations": [
+          {
+            "locale": {
+              "name": "en_GB",
+              "description": "English (UK)"
+            },
+            "value": "Basic Geometric1"
+          }
+        ]
+      },
+      "description": {
+        "msgID": "GEOM_BASIC_DESC1",
+        "translations": [
+          {
+            "locale": {
+              "name": "en_GB",
+              "description": "English (UK)"
+            },
+            "value": "1Common formulae for usual geometrical calculus (e.g. area, volume of basic shapes)"
+          }
+        ]
+      },
+     "calculi": []
+     ,
+     "children" :  []
+  },
+  {
+        "name": {
+          "msgID": "GEOM_BASIC2",
+          "translations": [
+            {
+              "locale": {
+                "name": "en_GB",
+                "description": "English (UK)"
+              },
+              "value": "Basic Geometric2"
+            }
+          ]
+        },
+        "description": {
+          "msgID": "GEOM_BASIC_DESC2",
+          "translations": [
+            {
+              "locale": {
+                "name": "en_GB",
+                "description": "English (UK)"
+              },
+              "value": "2Common formulae for usual geometrical calculus (e.g. area, volume of basic shapes)"
+            }
+          ]
+        },
+       "calculi": [],
+       "children" :  [
+       {
+             "name": {
+               "msgID": "GEOM_BASIC3",
+               "translations": [
+                 {
+                   "locale": {
+                     "name": "en_GB",
+                     "description": "English (UK)"
+                   },
+                   "value": "Basic Geometric3"
+                 }
+               ]
+             },
+             "description": {
+               "msgID": "GEOM_BASIC_DESC3",
+               "translations": [
+                 {
+                   "locale": {
+                     "name": "en_GB",
+                     "description": "English (UK)"
+                   },
+                   "value": "3Common formulae for usual geometrical calculus (e.g. area, volume of basic shapes)"
+                 }
+               ]
+             },
+            "calculi": [],
+            "children" :  []
+         },
+         {
+               "name": {
+                 "msgID": "GEOM_BASIC4",
+                 "translations": [
+                   {
+                     "locale": {
+                       "name": "en_GB",
+                       "description": "English (UK)"
+                     },
+                     "value": "Basic Geometric4"
+                   }
+                 ]
+               },
+               "description": {
+                 "msgID": "GEOM_BASIC_DESC4",
+                 "translations": [
+                   {
+                     "locale": {
+                       "name": "en_GB",
+                       "description": "English (UK)"
+                     },
+                     "value": "4Common formulae for usual geometrical calculus (e.g. area, volume of basic shapes)"
+                   }
+                 ]
+               },
+              "calculi": [],
+             "children" :  []
+           }
+
+
+       ]
     }
-  }
 ]

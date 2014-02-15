@@ -1,5 +1,5 @@
 #
-# generated on 2014/02/11 08:51:52
+# generated on 2014/02/15 04:23:47
 #
 # --table-start--
 dataClass=fr.softwaresemantics.howmanydroid.db.Assignment
@@ -72,6 +72,19 @@ generatedId=true
 # --field-start--
 fieldName=Calculi
 foreignCollection=true
+# --field-end--
+# --field-start--
+fieldName=children
+columnName=parent_id
+foreignCollection=true
+foreignCollectionEager=true
+foreignCollectionColumnName=parent_id
+# --field-end--
+# --field-start--
+fieldName=parent
+columnName=parent_id
+foreign=true
+foreignAutoRefresh=true
 # --field-end--
 # --field-start--
 fieldName=name
