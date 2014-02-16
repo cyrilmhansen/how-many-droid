@@ -89,6 +89,11 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
 
         Log.d("Category Persist","adding cat with "+cat.getCalculi().size()+" formulae");
         cat = getCategoryDao().createIfNotExists(cat);
+        for(Category subcat: cat.getChildren())
+        {
+            this.create(subcat);
+        }
+
         for (Calculus cal:cat.getCalculi())
         {
             //cal.setCategory(cat); //json was bogus

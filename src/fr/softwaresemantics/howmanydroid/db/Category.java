@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.dao.CloseableIterator;
 import com.j256.ormlite.dao.CloseableWrappedIterable;
@@ -19,21 +20,29 @@ import java.util.Iterator;
 /**
  * Created by christophe goessen on 01/02/14.
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Category {
 
     @JsonIgnore
     @DatabaseField(generatedId = true)
     int categoryID;
+
     @JsonProperty("calculi")
     @ForeignCollectionField(eager = false)
     Collection<Calculus> Calculi;
+
+    public void setChildren(Collection<Category> children) {
+        this.children=(children==null)?Collections.EMPTY_LIST:children;
+        for(Category child:this.children)
+            child.setParent(this);
+    }
 
     @JsonProperty("children")
     @ForeignCollectionField(eager = true,  columnName =  "parent_id")
     Collection<Category> children;
 
     @JsonIgnore
-    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName =  "parent_id")
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName =  "parent_id",canBeNull = true)
     Category parent;
 
     @JsonProperty
@@ -50,21 +59,15 @@ public class Category {
     public Category(@JsonProperty("categoryID") int _categoryID,@JsonProperty("calculi") Collection<Calculus> _Calculi, @JsonProperty("children") Collection<Category> _children, @JsonProperty("name") I18n _name,@JsonProperty("description") I18n _description)
     {
         categoryID=_categoryID;
-        Calculi=_Calculi;
-        children=_children;
-        if (_children ==null) {
-            _children = Collections.EMPTY_LIST;
-        }
-        // collections must be not null
         name=_name;
         description=_description;
+        this.Calculi=(_Calculi==null)?Collections.EMPTY_LIST:_Calculi;
         for(Calculus cal:Calculi)
             cal.setCategory(this);
-
-        for(Category child:children) {
-            Log.d("Category", "parent association for " + child.getName());
+        this.children=(_children==null)?Collections.EMPTY_LIST:_children;
+        for(Category child:children)
             child.setParent(this);
-        }
+
     }
     public Collection<Calculus> getCalculi() {
         return Calculi;
@@ -75,7 +78,9 @@ public class Category {
     }
 
     public void setCalculi(Collection<Calculus> calculi) {
-        Calculi = calculi;
+        this.Calculi=(Calculi==null)?Collections.EMPTY_LIST:Calculi;
+        for(Calculus cal:this.Calculi)
+            cal.setCategory(this);
     }
 
     public I18n getName() {

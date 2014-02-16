@@ -8,6 +8,7 @@ import com.j256.ormlite.field.ForeignCollectionField;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Created by christophe Goessen on 23/01/14.
@@ -21,8 +22,11 @@ public class History implements Serializable {
         return assignments;
     }
 
-    public void setAssignments(Collection<Assignment> assignments) {
-        this.assignments = assignments;
+    public void setAssignments(Collection<Assignment> _assignments) {
+
+        assignments=(_assignments==null)?Collections.EMPTY_LIST:_assignments;
+        for (Assignment ass:assignments)//:)
+            ass.setHistory(this);
     }
 
     @JsonProperty
@@ -34,7 +38,7 @@ public class History implements Serializable {
     public History(/*@JsonProperty("historyID") int _historyID,*/@JsonProperty("assignments") Collection<Assignment> _assignments)
     {
        /* historyID=_historyID;*/
-        assignments=_assignments;
+        assignments=(_assignments==null)?Collections.EMPTY_LIST:_assignments;
         for (Assignment ass:assignments)//:)
             ass.setHistory(this);
     }

@@ -1,198 +1,109 @@
-[
-  {
-    "calculi": [
-      {
-        "expressionList": [
-          {
-            "parameterList": [
-              {
-                "unit": {
+{
+  "calculi": null,
+  "children": [
+    {
+      "calculi": [
+        {
+          "expressionList": [
+            {
+              "parameterList": [
+                {
+                  "unit": {
+                    "value_type": "Double",
+                    "unit_name": "length",
+                    "symbol": "cm"
+                  },
+                  "name": "L",
                   "value_type": "Double",
-                  "unit_name": "length",
-                  "symbol": "cm"
-                },
-                "name": "L",
+                  "value": null,
+                  "type": "Double"
+                }
+              ],
+              "unit": {
                 "value_type": "Double",
-                "value": null,
-                "type": "Double"
-              }
-            ],
-            "unit": {
+                "unit_name": "length",
+                "symbol": "cm"
+              },
+              "expression": "L^2",
               "value_type": "Double",
-              "unit_name": "length",
-              "symbol": "cm"
-            },
-            "expression": "L^2",
-            "value_type": "Double",
-            "type": "Double"
+              "type": "Double"
+            }
+          ],
+          "name": {
+            "msgID": "AREA_SQUARE",
+            "translations": [
+              {
+                "locale": {
+                  "name": "en_GB",
+                  "description": "English (UK)"
+                },
+                "value": "Area of a Square"
+              }
+            ]
+          },
+          "description": {
+            "msgID": "AREA_SQUARE_DESC",
+            "translations": [
+              {
+                "locale": {
+                  "name": "en_GB",
+                  "description": "English (UK)"
+                },
+                "value": "Calculate area of a square surface given its size (L)"
+              }
+            ]
           }
-        ],
-        "name": {
-          "msgID": "AREA_SQUARE",
-          "translations": [
-            {
-              "locale": {
-                "name": "en_GB",
-                "description": "English (UK)"
-              },
-              "value": "Area of a Square"
-            }
-          ]
-        },
-        "description": {
-          "msgID": "AREA_SQUARE_DESC",
-          "translations": [
-            {
-              "locale": {
-                "name": "en_GB",
-                "description": "English (UK)"
-              },
-              "value": "Calculate area of a square surface given its size (L)"
-            }
-          ]
         }
-      }
-    ],
-    "name": {
-      "msgID": "GEOM_BASIC",
-      "translations": [
-        {
-          "locale": {
-            "name": "en_GB",
-            "description": "English (UK)"
-          },
-          "value": "Basic Geometric"
-        }
-      ]
-    },
-    "description": {
-      "msgID": "GEOM_BASIC_DESC",
-      "translations": [
-        {
-          "locale": {
-            "name": "en_GB",
-            "description": "English (UK)"
-          },
-          "value": "Common formulae for usual geometrical calculus (e.g. area, volume of basic shapes)"
-        }
-      ]
-    } ,
-         "children" :  []
-  },
-  {
+      ],
+      "children": null,
       "name": {
-        "msgID": "GEOM_BASIC1",
+        "msgID": "GEOM_BASIC",
         "translations": [
           {
             "locale": {
               "name": "en_GB",
               "description": "English (UK)"
             },
-            "value": "Basic Geometric1"
+            "value": "Basic Geometric"
           }
         ]
       },
       "description": {
-        "msgID": "GEOM_BASIC_DESC1",
+        "msgID": "GEOM_BASIC_DESC",
         "translations": [
           {
             "locale": {
               "name": "en_GB",
               "description": "English (UK)"
             },
-            "value": "1Common formulae for usual geometrical calculus (e.g. area, volume of basic shapes)"
+            "value": "Common formulae for usual geometrical calculus (e.g. area, volume of basic shapes)"
           }
         ]
-      },
-     "calculi": []
-     ,
-     "children" :  []
-  },
-  {
-        "name": {
-          "msgID": "GEOM_BASIC2",
-          "translations": [
-            {
-              "locale": {
-                "name": "en_GB",
-                "description": "English (UK)"
-              },
-              "value": "Basic Geometric2"
-            }
-          ]
-        },
-        "description": {
-          "msgID": "GEOM_BASIC_DESC2",
-          "translations": [
-            {
-              "locale": {
-                "name": "en_GB",
-                "description": "English (UK)"
-              },
-              "value": "2Common formulae for usual geometrical calculus (e.g. area, volume of basic shapes)"
-            }
-          ]
-        },
-       "calculi": [],
-       "children" :  [
-       {
-             "name": {
-               "msgID": "GEOM_BASIC3",
-               "translations": [
-                 {
-                   "locale": {
-                     "name": "en_GB",
-                     "description": "English (UK)"
-                   },
-                   "value": "Basic Geometric3"
-                 }
-               ]
-             },
-             "description": {
-               "msgID": "GEOM_BASIC_DESC3",
-               "translations": [
-                 {
-                   "locale": {
-                     "name": "en_GB",
-                     "description": "English (UK)"
-                   },
-                   "value": "3Common formulae for usual geometrical calculus (e.g. area, volume of basic shapes)"
-                 }
-               ]
-             },
-            "calculi": [],
-            "children" :  []
-         },
-         {
-               "name": {
-                 "msgID": "GEOM_BASIC4",
-                 "translations": [
-                   {
-                     "locale": {
-                       "name": "en_GB",
-                       "description": "English (UK)"
-                     },
-                     "value": "Basic Geometric4"
-                   }
-                 ]
-               },
-               "description": {
-                 "msgID": "GEOM_BASIC_DESC4",
-                 "translations": [
-                   {
-                     "locale": {
-                       "name": "en_GB",
-                       "description": "English (UK)"
-                     },
-                     "value": "4Common formulae for usual geometrical calculus (e.g. area, volume of basic shapes)"
-                   }
-                 ]
-               },
-              "calculi": [],
-             "children" :  []
-           }
-
-
-       ]
+      }
     }
-]
+  ],
+  "name": {
+    "msgID": "GEOM",
+    "translations": [
+      {
+        "locale": {
+          "name": "en_GB",
+          "description": "English (UK)"
+        },
+        "value": "Geometric"
+      }
+    ]
+  },
+  "description": {
+    "msgID": "GEOM_DESC",
+    "translations": [
+      {
+        "locale": {
+          "name": "en_GB",
+          "description": "English (UK)"
+        },
+        "value": "Common formulae for geometrical calculus (e.g. area, volume of basic shapes)"
+      }
+    ]
+  }
+}

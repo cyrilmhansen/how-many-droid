@@ -14,6 +14,7 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 
 public class I18n implements Serializable {
@@ -43,9 +44,8 @@ public class I18n implements Serializable {
     public I18n(@JsonProperty("msgID") String _msgID,@JsonProperty("translations") Collection<Translation> _translations)
     {
         msgID = _msgID;
-        translations = _translations;
-        // link orphaned child
-        for (Translation tr: translations)
+        this.translations = (_translations==null)?Collections.EMPTY_LIST:_translations;
+        for (Translation tr: this.translations)
             tr.setI18n(this);
     }
 
@@ -66,7 +66,10 @@ public class I18n implements Serializable {
     }
 
     public void setTranslations(Collection<Translation> translations) {
-        this.translations = translations;
+
+        this.translations = (translations==null)?Collections.EMPTY_LIST:translations;
+        for (Translation tr: this.translations)
+            tr.setI18n(this);
     }
 
     public I18n() {

@@ -9,6 +9,7 @@ import com.j256.ormlite.field.ForeignCollectionField;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Created by Christophe Goessen on 30/12/13.
@@ -57,11 +58,12 @@ public class Expression implements Serializable {
     public Expression(/*@JsonProperty("expressionID") int _expressionID,*/@JsonProperty("parameterList") Collection<Parameter> _parameterList,@JsonProperty("unit") Unit _unit, @JsonProperty("expression") String _expression,@JsonProperty("value_type") String _value_type)
     {
        /* expressionID=_expressionID;*/
+
         expression=_expression;
-        parameterList=_parameterList;
         unit=_unit;
         value_type=_value_type;
-        for (Parameter param:parameterList)
+        this.parameterList=(_parameterList==null)?Collections.EMPTY_LIST:_parameterList;
+        for (Parameter param: this.parameterList)
             param.setExpression(this);
     }
 
@@ -95,6 +97,8 @@ public class Expression implements Serializable {
     }
 
     public void setParameterList(Collection<Parameter> parameterList) {
-        this.parameterList = parameterList;
+        this.parameterList=(parameterList==null)?Collections.EMPTY_LIST:parameterList;
+        for (Parameter param: this.parameterList)
+            param.setExpression(this);
     }
 }

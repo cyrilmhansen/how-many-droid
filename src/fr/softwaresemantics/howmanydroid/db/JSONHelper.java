@@ -2,11 +2,14 @@ package fr.softwaresemantics.howmanydroid.db;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by christophe goessen on 02/02/14.
@@ -102,9 +105,51 @@ public class JSONHelper {
         calculus.setCategory(category);
         category.setCalculi(calList);
 
+
+        Category rootCategory = new Category();
+        i18n = new I18n();
+        transList = new ArrayList<Translation>();
+        translation = new Translation();
+        translation.setLocale(en);
+        translation.setI18n(i18n);
+        translation.setValue("Geometric");
+        i18n.setMsgID("GEOM");
+        transList.add(translation);
+        i18n.setTranslations(transList);
+        rootCategory.setName(i18n);
+        i18n = new I18n();
+        transList = new ArrayList<Translation>();
+        translation = new Translation();
+        translation.setLocale(en);
+        translation.setI18n(i18n);
+        translation.setValue("Common formulae for geometrical calculus (e.g. area, volume of basic shapes)");
+        i18n.setMsgID("GEOM_DESC");
+        transList.add(translation);
+        i18n.setTranslations(transList);
+        rootCategory.setDescription(i18n);
+        Collection<Category> subcat = new ArrayList<Category>();
+        subcat.add(category);
+        category.setParent(rootCategory);
+        rootCategory.setChildren(subcat);
+        Collection<Category>  rootDoc =  new ArrayList<Category>();
+        rootDoc.add(rootCategory);
+
+
         try {
-            System.out.println(mapper.writeValueAsString(category));
+            mapper.configure(SerializationFeature.INDENT_OUTPUT,true);
+            mapper.configure(SerializationFeature.WRITE_EMPTY_JSON_ARRAYS,true);
+            mapper.configure(SerializationFeature.WRITE_NULL_MAP_VALUES,true);
+            /*
+            mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY,true); //accept null collection*/
+            String Json = mapper.writeValueAsString(rootDoc);
+            System.out.println(Json);
+            System.out.println("Testing Deserialization");
+            List<Category> DBFromJson = mapper.readValue(Json, mapper.getTypeFactory().constructCollectionType(List.class, Category.class));
+            Json = mapper.writeValueAsString(DBFromJson);
+            System.out.println(Json);
         } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

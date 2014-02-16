@@ -10,8 +10,12 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationConfig;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
 
@@ -46,6 +50,8 @@ import fr.softwaresemantics.howmanydroid.ui.mockup.WebViewReuseActivity;
 import fr.softwaresemantics.howmanydroid.util.AssetsUtil;
 import fr.softwaresemantics.howmanydroid.util.MJView;
 import fr.softwaresemantics.howmanydroid.util.MsgDialog;
+
+import static com.fasterxml.jackson.databind.DeserializationConfig.*;
 
 public class CalculatorActivity extends Activity implements View.OnClickListener {
 
@@ -82,6 +88,8 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
     private void reloadAndCheckDB() {
         InputStream is = getResources().openRawResource(R.raw.database);
         ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY,true); //accept null collection
+
         DBHelper dbHelper = new DBHelper(this);
 
         try {
@@ -91,13 +99,13 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
             {
                 Log.i("DB:Json", mapper.writeValueAsString(cat));
                 dbHelper.create(cat);
-
+/*
                 // TODO fonction récursive pour créer les enfants ?
                 for (Category cat2: cat.getChildren()) {
                     Log.i("DB:Json", mapper.writeValueAsString(cat2));
                     dbHelper.create(cat2);
                 }
-
+*/
             }
 
         } catch (IOException e) {
