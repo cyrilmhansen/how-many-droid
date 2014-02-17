@@ -13,6 +13,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -86,6 +87,9 @@ public class Category {
     }
 
     public Collection<Category> getChildren() {
+        if (children ==null) {
+            children = new ArrayList<Category>();
+    }
         return children;
     }
 
