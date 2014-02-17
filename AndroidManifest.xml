@@ -24,6 +24,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="fr.softwaresemantics.howmanydroid.CategoryListActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name="fr.softwaresemantics.howmanydroid.ui.mockup.MockupInputParamActivity"
             android:label="@string/app_name" >
             </activity>

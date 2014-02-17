@@ -23,6 +23,18 @@ import java.util.Iterator;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Category {
 
+    public int getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
+    }
+
+    public Category getParent() {
+        return parent;
+    }
+
     @JsonIgnore
     @DatabaseField(generatedId = true)
     int categoryID;

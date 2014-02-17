@@ -21,8 +21,8 @@ import fr.softwaresemantics.howmanydroid.R;
  */
 public class DBHelper extends OrmLiteSqliteOpenHelper {
 
-    private static final String DATABASE_NAME = "howmanydroid.db";
-    private static final int DATABASE_VERSION = 8;
+    public static final String DATABASE_NAME = "howmanydroid.db";
+    private static final int DATABASE_VERSION = 1;
 
     private RuntimeExceptionDao<Locale, Integer> localeRuntimeDao = null;
 
@@ -30,7 +30,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
 
         // Force recreation of the database at each app startup
-        context.deleteDatabase(DATABASE_NAME);
+        //context.deleteDatabase(DATABASE_NAME);
     }
 
     private Dao<Locale, String> localeDao = null;
@@ -210,7 +210,7 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
         * Migration to ORMLite in progress, legacy SQLQuery code will be removed
         */
         try {
-            Log.i(DBHelper.class.getName(), "onUpgrade");
+            Log.i(DBHelper.class.getName(), "onUpgrade "+oldVersion+"->"+newVersion);
             TableUtils.dropTable(connectionSource, Parameter.class, true);
             TableUtils.dropTable(connectionSource, Expression.class, true);
             TableUtils.dropTable(connectionSource, Locale.class, true);

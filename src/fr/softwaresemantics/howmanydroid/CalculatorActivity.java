@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.DeserializationConfig;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
 
@@ -90,7 +91,9 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY,true); //accept null collection
 
-        DBHelper dbHelper = new DBHelper(this);
+           this.deleteDatabase(DBHelper.DATABASE_NAME);
+        DBHelper dbHelper = OpenHelperManager.getHelper(this,DBHelper.class);
+                //new DBHelper(this);
 
         try {
             List<Category> DBFromJson = mapper.readValue(is, mapper.getTypeFactory().constructCollectionType(List.class, Category.class));
@@ -100,7 +103,7 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
                 Log.i("DB:Json", mapper.writeValueAsString(cat));
                 dbHelper.create(cat);
 /*
-                // TODO fonction récursive pour créer les enfants ?
+
                 for (Category cat2: cat.getChildren()) {
                     Log.i("DB:Json", mapper.writeValueAsString(cat2));
                     dbHelper.create(cat2);
@@ -184,6 +187,7 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+        OpenHelperManager.releaseHelper();
     }
 
     private void demoParseEval() {
@@ -308,6 +312,8 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
             case R.id.demo8:
                 runTestReuseWebview();
                 return true;
+            case R.id.list_categories:
+                listCategories();
             case R.id.help:
                 //  showHelp();
                 return true;
@@ -352,7 +358,15 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         Intent i = new Intent(this, MockupInputParamActivity.class);
         startActivity(i);
     }
-
+    public void listCategories ()
+    {
+        Intent i = new Intent(this, CategoryListActivity.class);
+        Bundle b = new Bundle();
+        b.putInt("parent_id",-1);
+        b.putString("lang","en_GB");
+        i.putExtras(b);
+        startActivity(i);
+    }
     public void runTestReuseWebview() {
         Intent i = new Intent(this, WebViewReuseActivity.class);
         startActivity(i);
