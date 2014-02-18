@@ -18,6 +18,8 @@ public class TestDbHelper {
     private static Locale en;
     private static Locale fr;
 
+    private static long globalId;
+
 /*    Géométrie
     - (Conversions d'unités)
     - Périmètres et Surface dans le plan
@@ -158,6 +160,9 @@ public class TestDbHelper {
     private Category defineCategory(Category parent, String id, String labelEn, String labelFr) {
         Category newCategory = new Category();
 
+        newCategory.setCategoryID((int)globalId);
+        globalId++;
+
         ArrayList<Translation> transList = new ArrayList<Translation>();
 
         I18n i18n = new I18n();
@@ -212,7 +217,7 @@ public class TestDbHelper {
         en.setDescription("English (UK)");
 
         fr = new Locale();
-        en.setName("fr_FR");
-        en.setDescription("Français (FR)");
+        fr.setName("fr_FR");
+        fr.setDescription("Français (FR)");
     }
 }
