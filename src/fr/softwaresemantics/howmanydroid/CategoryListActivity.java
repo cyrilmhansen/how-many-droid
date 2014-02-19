@@ -13,6 +13,8 @@ import com.j256.ormlite.stmt.Where;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import fr.softwaresemantics.howmanydroid.db.Category;
 import fr.softwaresemantics.howmanydroid.db.DBHelper;
@@ -20,7 +22,7 @@ import fr.softwaresemantics.howmanydroid.db.Locale;
 import fr.softwaresemantics.howmanydroid.ui.CategoryListAdapter;
 
 /**
- * Created by chris on 16/02/14.
+ * Created by christophe Goessen on 16/02/14.
  */
 public class CategoryListActivity extends ListActivity {
     ListView catList;
@@ -43,6 +45,7 @@ public class CategoryListActivity extends ListActivity {
             ArrayList<Category> categories;
 
             Locale lang = dbHelper.getLocaleDao().queryForId(lang_id);
+            final Locale flang = lang;
             if (lang ==null)
                 lang = dbHelper.getLocaleDao().queryForId("en_GB");
             if(parent_id==-1)
@@ -55,7 +58,16 @@ public class CategoryListActivity extends ListActivity {
                 Category parent = dbHelper.getCategoryDao().queryForId(bundle.getInt("parent_id"));
                 categories = new ArrayList<Category>(parent.getChildren());
             }
-            setListAdapter(new CategoryListAdapter(this,categories,lang));
+
+            Collections.sort(categories, new Comparator<Category>() {
+
+                @Override
+                public int compare(Category lhs, Category rhs) {
+                    return lhs.getName().getValue(flang).compareTo(rhs.getName().getValue(flang));
+                }
+            });
+            //OpenHelperManager.releaseHelper();
+            setListAdapter(new CategoryListAdapter(this, categories, lang));
             catList = getListView();
 
             catList.setOnItemClickListener(new OnItemClickListener() {

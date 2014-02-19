@@ -81,13 +81,10 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
     public I18n create(I18n i18n) throws SQLException {
         for(Translation trans: i18n.getTranslations())
         this.create(trans);
-        Log.d("I18n Persist","adding "+i18n.getMsgID());
         return getI18nDao().createIfNotExists(i18n);
     }
     public Category create(Category cat) throws SQLException {
         //ArrayList<Calculus> calc = new ArrayList<Calculus>();
-
-        Log.d("Category Persist","adding cat with "+cat.getCalculi().size()+" formulae");
         cat = getCategoryDao().createIfNotExists(cat);
         for(Category subcat: cat.getChildren())
         {
@@ -113,7 +110,6 @@ public class DBHelper extends OrmLiteSqliteOpenHelper {
         }
         this.create(cal.getName());
         this.create(cal.getDescription());
-        Log.d("Calculus Persist","adding");
         return getCalculusDao().createIfNotExists(cal);
     }
 

@@ -21,7 +21,7 @@ import fr.softwaresemantics.howmanydroid.db.Category;
 import fr.softwaresemantics.howmanydroid.db.Locale;
 
 /**
- * Created by chris on 16/02/14.
+ * Created by christophe Goessen on 16/02/14.
  */
 public class CategoryListAdapter implements ListAdapter {
 

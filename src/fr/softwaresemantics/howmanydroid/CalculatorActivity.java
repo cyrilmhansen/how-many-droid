@@ -97,18 +97,11 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
 
         try {
             List<Category> DBFromJson = mapper.readValue(is, mapper.getTypeFactory().constructCollectionType(List.class, Category.class));
-            Log.i("DB:Json", "Inserting to db");
+            Log.i("DB:Json import", "Inserting to db");
             for (Category cat: DBFromJson)
             {
-                Log.i("DB:Json", mapper.writeValueAsString(cat));
+                Log.i("DB:Json import", mapper.writeValueAsString(cat));
                 dbHelper.create(cat);
-/*
-
-                for (Category cat2: cat.getChildren()) {
-                    Log.i("DB:Json", mapper.writeValueAsString(cat2));
-                    dbHelper.create(cat2);
-                }
-*/
             }
 
         } catch (IOException e) {
@@ -116,7 +109,7 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+    /*
         try {
             //Category category = dbHelper.getCategoryDao().queryForId(0);
             Log.i("DB:Json","Reading back from db");
@@ -186,7 +179,7 @@ public class CalculatorActivity extends Activity implements View.OnClickListener
             e.printStackTrace();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-        }
+        }*/
         OpenHelperManager.releaseHelper();
     }
 
