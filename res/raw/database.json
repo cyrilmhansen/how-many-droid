@@ -1,1092 +1,5 @@
- {
-  "categoryID" : 0,
-  "children" : [ ],
-  "name" : {
-    "msgID" : "UNIT_CONVERT",
-    "translations" : [ {
-      "locale" : {
-        "name" : "en_GB",
-        "description" : "English (UK)"
-      },
-      "value" : "Unit convertion"
-    }, {
-      "locale" : {
-        "name" : "fr_FR",
-        "description" : "Français (FR)"
-      },
-      "value" : "Conversion d'unité"
-    } ]
-  },
-  "description" : {
-    "msgID" : "UNIT_CONVERT_DESC",
-    "translations" : [ {
-      "locale" : {
-        "name" : "en_GB",
-        "description" : "English (UK)"
-      },
-      "value" : "Unit convertion Description to be defined"
-    }, {
-      "locale" : {
-        "name" : "fr_FR",
-        "description" : "Français (FR)"
-      },
-      "value" : "Conversion d'unité Description to be defined"
-    } ]
-  }
-}, {
-  "categoryID" : 1,
-  "children" : [ {
-    "categoryID" : 2,
-    "children" : [ {
-      "categoryID" : 3,
-      "children" : [ ],
-      "name" : {
-        "msgID" : "GEOM_AREA_CIRC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Circle"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Cercle"
-        } ]
-      },
-      "description" : {
-        "msgID" : "GEOM_AREA_CIRC_DESC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Circle Description to be defined"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Cercle Description to be defined"
-        } ]
-      }
-    }, {
-      "categoryID" : 4,
-      "children" : [ ],
-      "name" : {
-        "msgID" : "GEOM_AREA_PARAL",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Circle"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Parallélogramme"
-        } ]
-      },
-      "description" : {
-        "msgID" : "GEOM_AREA_PARAL_DESC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Circle Description to be defined"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Parallélogramme Description to be defined"
-        } ]
-      }
-    }, {
-      "categoryID" : 5,
-      "children" : [ ],
-      "name" : {
-        "msgID" : "GEOM_AREA_RECT",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Rectangle"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Rectangle"
-        } ]
-      },
-      "description" : {
-        "msgID" : "GEOM_AREA_RECT_DESC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Rectangle Description to be defined"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Rectangle Description to be defined"
-        } ]
-      }
-    }, {
-      "categoryID" : 6,
-      "children" : [ ],
-      "name" : {
-        "msgID" : "GEOM_AREA_TRAPZ",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Trapezoid"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Trapézoîde"
-        } ]
-      },
-      "description" : {
-        "msgID" : "GEOM_AREA_TRAPZ_DESC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Trapezoid Description to be defined"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Trapézoîde Description to be defined"
-        } ]
-      }
-    }, {
-      "categoryID" : 7,
-      "children" : [ ],
-      "name" : {
-        "msgID" : "GEOM_AREA_TRIANG",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Triangle"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Triangle"
-        } ]
-      },
-      "description" : {
-        "msgID" : "GEOM_AREA_TRIANG_DESC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Triangle Description to be defined"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Triangle Description to be defined"
-        } ]
-      }
-    } ],
-    "name" : {
-      "msgID" : "GEOM_AREA",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Length & planar Area"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Périmètre et Surface plane"
-      } ]
-    },
-    "description" : {
-      "msgID" : "GEOM_AREA_DESC",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Length & planar Area Description to be defined"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Périmètre et Surface plane Description to be defined"
-      } ]
-    }
-  }, {
-    "categoryID" : 8,
-    "children" : [ {
-      "categoryID" : 9,
-      "children" : [ ],
-      "name" : {
-        "msgID" : "GEOM_VOL_SPHERE",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Sphere"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Sphère"
-        } ]
-      },
-      "description" : {
-        "msgID" : "GEOM_VOL_SPHERE_DESC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Sphere Description to be defined"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Sphère Description to be defined"
-        } ]
-      }
-    }, {
-      "categoryID" : 10,
-      "children" : [ ],
-      "name" : {
-        "msgID" : "GEOM_VOL_CONE",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Cone"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Cône"
-        } ]
-      },
-      "description" : {
-        "msgID" : "GEOM_VOL_CONE_DESC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Cone Description to be defined"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Cône Description to be defined"
-        } ]
-      }
-    }, {
-      "categoryID" : 11,
-      "children" : [ ],
-      "name" : {
-        "msgID" : "GEOM_VOL_CYL",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Cylinder"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Cylindre"
-        } ]
-      },
-      "description" : {
-        "msgID" : "GEOM_VOL_CYL_DESC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Cylinder Description to be defined"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Cylindre Description to be defined"
-        } ]
-      }
-    }, {
-      "categoryID" : 12,
-      "children" : [ ],
-      "name" : {
-        "msgID" : "GEOM_VOL_RECTPRISM",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Rectangle Prism"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Prisme rectangle"
-        } ]
-      },
-      "description" : {
-        "msgID" : "GEOM_VOL_RECTPRISM_DESC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Rectangle Prism Description to be defined"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Prisme rectangle Description to be defined"
-        } ]
-      }
-    }, {
-      "categoryID" : 13,
-      "children" : [ ],
-      "name" : {
-        "msgID" : "GEOM_VOL_RECTPYRAM",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Pyramide"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Pyramide"
-        } ]
-      },
-      "description" : {
-        "msgID" : "GEOM_VOL_RECTPYRAM_DESC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Pyramide Description to be defined"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Pyramide Description to be defined"
-        } ]
-      }
-    } ],
-    "name" : {
-      "msgID" : "GEOM_VOLUME",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Area & Volume (3D)"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Surface et Volumes (3D)"
-      } ]
-    },
-    "description" : {
-      "msgID" : "GEOM_VOLUME_DESC",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Area & Volume (3D) Description to be defined"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Surface et Volumes (3D) Description to be defined"
-      } ]
-    }
-  }, {
-    "categoryID" : 14,
-    "children" : [ ],
-    "name" : {
-      "msgID" : "GEOM_TRIANGLE",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Triangle,Pythagoras &Co"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Triangles, Pythagore &Cie"
-      } ]
-    },
-    "description" : {
-      "msgID" : "GEOM_TRIANGLE_DESC",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Triangle,Pythagoras &Co Description to be defined"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Triangles, Pythagore &Cie Description to be defined"
-      } ]
-    }
-  }, {
-    "categoryID" : 15,
-    "children" : [ ],
-    "name" : {
-      "msgID" : "GEOM_COORD",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Coordinate system"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Repère & Coordonnées"
-      } ]
-    },
-    "description" : {
-      "msgID" : "GEOM_COORD_DESC",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Coordinate system Description to be defined"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Repère & Coordonnées Description to be defined"
-      } ]
-    }
-  } ],
-  "name" : {
-    "msgID" : "GEOM",
-    "translations" : [ {
-      "locale" : {
-        "name" : "en_GB",
-        "description" : "English (UK)"
-      },
-      "value" : "Geometry"
-    }, {
-      "locale" : {
-        "name" : "fr_FR",
-        "description" : "Français (FR)"
-      },
-      "value" : "Géométrie"
-    } ]
-  },
-  "description" : {
-    "msgID" : "GEOM_DESC",
-    "translations" : [ {
-      "locale" : {
-        "name" : "en_GB",
-        "description" : "English (UK)"
-      },
-      "value" : "Geometry Description to be defined"
-    }, {
-      "locale" : {
-        "name" : "fr_FR",
-        "description" : "Français (FR)"
-      },
-      "value" : "Géométrie Description to be defined"
-    } ]
-  }
-}, {
-  "categoryID" : 16,
-  "children" : [ {
-    "categoryID" : 17,
-    "children" : [ ],
-    "name" : {
-      "msgID" : "FIN_CURRENCY",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Currency conversion"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Conversion de devises"
-      } ]
-    },
-    "description" : {
-      "msgID" : "FIN_CURRENCY_DESC",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Currency conversion Description to be defined"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Conversion de devises Description to be defined"
-      } ]
-    }
-  }, {
-    "categoryID" : 18,
-    "children" : [ ],
-    "name" : {
-      "msgID" : "FIN_LOAN",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Loan & Interests"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Prêts et Intérets"
-      } ]
-    },
-    "description" : {
-      "msgID" : "FIN_LOAN_DESC",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Loan & Interests Description to be defined"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Prêts et Intérets Description to be defined"
-      } ]
-    }
-  } ],
-  "name" : {
-    "msgID" : "FINANCE",
-    "translations" : [ {
-      "locale" : {
-        "name" : "en_GB",
-        "description" : "English (UK)"
-      },
-      "value" : "Finance"
-    }, {
-      "locale" : {
-        "name" : "fr_FR",
-        "description" : "Français (FR)"
-      },
-      "value" : "Finance"
-    } ]
-  },
-  "description" : {
-    "msgID" : "FINANCE_DESC",
-    "translations" : [ {
-      "locale" : {
-        "name" : "en_GB",
-        "description" : "English (UK)"
-      },
-      "value" : "Finance Description to be defined"
-    }, {
-      "locale" : {
-        "name" : "fr_FR",
-        "description" : "Français (FR)"
-      },
-      "value" : "Finance Description to be defined"
-    } ]
-  }
-}, {
-  "categoryID" : 19,
-  "children" : [ {
-    "categoryID" : 20,
-    "children" : [ {
-      "categoryID" : 21,
-      "children" : [ ],
-      "name" : {
-        "msgID" : "TECH_FORCE_GRAVI",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Gravitation"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Gravitation"
-        } ]
-      },
-      "description" : {
-        "msgID" : "TECH_FORCE_GRAVI_DESC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Gravitation Description to be defined"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Gravitation Description to be defined"
-        } ]
-      }
-    } ],
-    "name" : {
-      "msgID" : "TECH_FORCE",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Forces & Mecanics"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Forces & Mécanique"
-      } ]
-    },
-    "description" : {
-      "msgID" : "TECH_FORCE_DESC",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Forces & Mecanics Description to be defined"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Forces & Mécanique Description to be defined"
-      } ]
-    }
-  }, {
-    "categoryID" : 22,
-    "children" : [ {
-      "categoryID" : 23,
-      "children" : [ ],
-      "name" : {
-        "msgID" : "TECH_FLUIDS_IDEALGAS",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Ideal Gas"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Gaz parfaits"
-        } ]
-      },
-      "description" : {
-        "msgID" : "TECH_FLUIDS_IDEALGAS_DESC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Ideal Gas Description to be defined"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Gaz parfaits Description to be defined"
-        } ]
-      }
-    }, {
-      "categoryID" : 24,
-      "children" : [ ],
-      "name" : {
-        "msgID" : "TECH_FLUIDS_FLOW",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Flow"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Flux"
-        } ]
-      },
-      "description" : {
-        "msgID" : "TECH_FLUIDS_FLOW_DESC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Flow Description to be defined"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Flux Description to be defined"
-        } ]
-      }
-    }, {
-      "categoryID" : 25,
-      "children" : [ ],
-      "name" : {
-        "msgID" : "TECH_FLUIDS_PRESSURE",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Pressure"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Pression"
-        } ]
-      },
-      "description" : {
-        "msgID" : "TECH_FLUIDS_PRESSURE_DESC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Pressure Description to be defined"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Pression Description to be defined"
-        } ]
-      }
-    } ],
-    "name" : {
-      "msgID" : "TECH_FLUIDS",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Fluids"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Fluides"
-      } ]
-    },
-    "description" : {
-      "msgID" : "TECH_FLUIDS_DESC",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Fluids Description to be defined"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Fluides Description to be defined"
-      } ]
-    }
-  }, {
-    "categoryID" : 26,
-    "children" : [ ],
-    "name" : {
-      "msgID" : "TECH_HEAT",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Heat Transfer"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Transfert de chaleur"
-      } ]
-    },
-    "description" : {
-      "msgID" : "TECH_HEAT_DESC",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Heat Transfer Description to be defined"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Transfert de chaleur Description to be defined"
-      } ]
-    }
-  }, {
-    "categoryID" : 27,
-    "children" : [ {
-      "categoryID" : 28,
-      "children" : [ ],
-      "name" : {
-        "msgID" : "TECH_ELEC_FUNDAM",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Electronics Fundamentals"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Electronique fondamentale"
-        } ]
-      },
-      "description" : {
-        "msgID" : "TECH_ELEC_FUNDAM_DESC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Electronics Fundamentals Description to be defined"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Electronique fondamentale Description to be defined"
-        } ]
-      }
-    }, {
-      "categoryID" : 29,
-      "children" : [ ],
-      "name" : {
-        "msgID" : "TECH_ELEC_CIRCUITS",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Usual Circuits"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Circuits usuels"
-        } ]
-      },
-      "description" : {
-        "msgID" : "TECH_ELEC_CIRCUITS_DESC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Usual Circuits Description to be defined"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Circuits usuels Description to be defined"
-        } ]
-      }
-    }, {
-      "categoryID" : 30,
-      "children" : [ ],
-      "name" : {
-        "msgID" : "TECH_ELEC_MAGNET",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Magnetism"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Magnétisme"
-        } ]
-      },
-      "description" : {
-        "msgID" : "TECH_ELEC_MAGNET_DESC",
-        "translations" : [ {
-          "locale" : {
-            "name" : "en_GB",
-            "description" : "English (UK)"
-          },
-          "value" : "Magnetism Description to be defined"
-        }, {
-          "locale" : {
-            "name" : "fr_FR",
-            "description" : "Français (FR)"
-          },
-          "value" : "Magnétisme Description to be defined"
-        } ]
-      }
-    } ],
-    "name" : {
-      "msgID" : "TECH_ELECTRICITY",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Electricity"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Electricité"
-      } ]
-    },
-    "description" : {
-      "msgID" : "TECH_ELECTRICITY_DESC",
-      "translations" : [ {
-        "locale" : {
-          "name" : "en_GB",
-          "description" : "English (UK)"
-        },
-        "value" : "Electricity Description to be defined"
-      }, {
-        "locale" : {
-          "name" : "fr_FR",
-          "description" : "Français (FR)"
-        },
-        "value" : "Electricité Description to be defined"
-      } ]
-    }
-  } ],
-  "name" : {
-    "msgID" : "TECH",
-    "translations" : [ {
-      "locale" : {
-        "name" : "en_GB",
-        "description" : "English (UK)"
-      },
-      "value" : "Science & Engineering"
-    }, {
-      "locale" : {
-        "name" : "fr_FR",
-        "description" : "Français (FR)"
-      },
-      "value" : "Sciences & Techniques"
-    } ]
-  },
-  "description" : {
-    "msgID" : "TECH_DESC",
-    "translations" : [ {
-      "locale" : {
-        "name" : "en_GB",
-        "description" : "English (UK)"
-      },
-      "value" : "Science & Engineering Description to be defined"
-    }, {
-      "locale" : {
-        "name" : "fr_FR",
-        "description" : "Français (FR)"
-      },
-      "value" : "Sciences & Techniques Description to be defined"
-    } ]
-  }
-} ]
-Testing Deserialization
 [ {
-  "categoryID" : 0,
+  
   "calculi" : [ ],
   "children" : [ ],
   "name" : {
@@ -1122,13 +35,13 @@ Testing Deserialization
     } ]
   }
 }, {
-  "categoryID" : 1,
+  
   "calculi" : [ ],
   "children" : [ {
-    "categoryID" : 2,
+    
     "calculi" : [ ],
     "children" : [ {
-      "categoryID" : 3,
+      
       "calculi" : [ ],
       "children" : [ ],
       "name" : {
@@ -1164,7 +77,7 @@ Testing Deserialization
         } ]
       }
     }, {
-      "categoryID" : 4,
+      
       "calculi" : [ ],
       "children" : [ ],
       "name" : {
@@ -1200,7 +113,7 @@ Testing Deserialization
         } ]
       }
     }, {
-      "categoryID" : 5,
+      
       "calculi" : [ ],
       "children" : [ ],
       "name" : {
@@ -1236,7 +149,7 @@ Testing Deserialization
         } ]
       }
     }, {
-      "categoryID" : 6,
+      
       "calculi" : [ ],
       "children" : [ ],
       "name" : {
@@ -1272,7 +185,7 @@ Testing Deserialization
         } ]
       }
     }, {
-      "categoryID" : 7,
+      
       "calculi" : [ ],
       "children" : [ ],
       "name" : {
@@ -1341,10 +254,10 @@ Testing Deserialization
       } ]
     }
   }, {
-    "categoryID" : 8,
+    
     "calculi" : [ ],
     "children" : [ {
-      "categoryID" : 9,
+      
       "calculi" : [ ],
       "children" : [ ],
       "name" : {
@@ -1380,7 +293,7 @@ Testing Deserialization
         } ]
       }
     }, {
-      "categoryID" : 10,
+      
       "calculi" : [ ],
       "children" : [ ],
       "name" : {
@@ -1416,7 +329,7 @@ Testing Deserialization
         } ]
       }
     }, {
-      "categoryID" : 11,
+      
       "calculi" : [ ],
       "children" : [ ],
       "name" : {
@@ -1452,7 +365,7 @@ Testing Deserialization
         } ]
       }
     }, {
-      "categoryID" : 12,
+      
       "calculi" : [ ],
       "children" : [ ],
       "name" : {
@@ -1488,7 +401,7 @@ Testing Deserialization
         } ]
       }
     }, {
-      "categoryID" : 13,
+      
       "calculi" : [ ],
       "children" : [ ],
       "name" : {
@@ -1557,7 +470,7 @@ Testing Deserialization
       } ]
     }
   }, {
-    "categoryID" : 14,
+    
     "calculi" : [ ],
     "children" : [ ],
     "name" : {
@@ -1593,7 +506,7 @@ Testing Deserialization
       } ]
     }
   }, {
-    "categoryID" : 15,
+    
     "calculi" : [ ],
     "children" : [ ],
     "name" : {
@@ -1662,10 +575,10 @@ Testing Deserialization
     } ]
   }
 }, {
-  "categoryID" : 16,
+  
   "calculi" : [ ],
   "children" : [ {
-    "categoryID" : 17,
+    
     "calculi" : [ ],
     "children" : [ ],
     "name" : {
@@ -1701,7 +614,7 @@ Testing Deserialization
       } ]
     }
   }, {
-    "categoryID" : 18,
+    
     "calculi" : [ ],
     "children" : [ ],
     "name" : {
@@ -1770,13 +683,13 @@ Testing Deserialization
     } ]
   }
 }, {
-  "categoryID" : 19,
+  
   "calculi" : [ ],
   "children" : [ {
-    "categoryID" : 20,
+    
     "calculi" : [ ],
     "children" : [ {
-      "categoryID" : 21,
+      
       "calculi" : [ ],
       "children" : [ ],
       "name" : {
@@ -1845,10 +758,10 @@ Testing Deserialization
       } ]
     }
   }, {
-    "categoryID" : 22,
+    
     "calculi" : [ ],
     "children" : [ {
-      "categoryID" : 23,
+      
       "calculi" : [ ],
       "children" : [ ],
       "name" : {
@@ -1884,7 +797,7 @@ Testing Deserialization
         } ]
       }
     }, {
-      "categoryID" : 24,
+      
       "calculi" : [ ],
       "children" : [ ],
       "name" : {
@@ -1920,7 +833,7 @@ Testing Deserialization
         } ]
       }
     }, {
-      "categoryID" : 25,
+      
       "calculi" : [ ],
       "children" : [ ],
       "name" : {
@@ -1989,7 +902,7 @@ Testing Deserialization
       } ]
     }
   }, {
-    "categoryID" : 26,
+    
     "calculi" : [ ],
     "children" : [ ],
     "name" : {
@@ -2025,10 +938,10 @@ Testing Deserialization
       } ]
     }
   }, {
-    "categoryID" : 27,
+    
     "calculi" : [ ],
     "children" : [ {
-      "categoryID" : 28,
+      
       "calculi" : [ ],
       "children" : [ ],
       "name" : {
@@ -2064,7 +977,7 @@ Testing Deserialization
         } ]
       }
     }, {
-      "categoryID" : 29,
+      
       "calculi" : [ ],
       "children" : [ ],
       "name" : {
@@ -2100,7 +1013,7 @@ Testing Deserialization
         } ]
       }
     }, {
-      "categoryID" : 30,
+      
       "calculi" : [ ],
       "children" : [ ],
       "name" : {
@@ -2202,3 +1115,4 @@ Testing Deserialization
     } ]
   }
 }
+]
