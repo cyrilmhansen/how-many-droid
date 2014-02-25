@@ -3,6 +3,9 @@ package fr.softwaresemantics.howmanydroid;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -20,11 +23,12 @@ import fr.softwaresemantics.howmanydroid.db.Category;
 import fr.softwaresemantics.howmanydroid.db.DBHelper;
 import fr.softwaresemantics.howmanydroid.db.Locale;
 import fr.softwaresemantics.howmanydroid.ui.CategoryListAdapter;
-
+import android.app.ActionBar;
 /**
  * Created by christophe Goessen on 16/02/14.
  */
-public class CategoryListActivity extends ListActivity {
+public class CategoryListActivity extends ListActivity
+{
     ListView catList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +37,8 @@ public class CategoryListActivity extends ListActivity {
         //setContentView(R.layout.category_list);
         overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_left);
         Bundle bundle = getIntent().getExtras();
-
+        ActionBar actionBar = getActionBar();
+        actionBar.setHomeButtonEnabled(true);
 
 
                 //(ListView) findViewById(R.id.category_list_view);
@@ -98,5 +103,34 @@ public class CategoryListActivity extends ListActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
+    }
+    //this will go in interface
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.header, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                intent = new Intent(this, CalculatorActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                break;
+            case R.id.header_menu_list:
+                intent = new Intent(this, CategoryListActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Bundle b = new Bundle();
+                b.putInt("parent_id",-1);
+                b.putString("lang","en_GB");
+                intent.putExtras(b);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
